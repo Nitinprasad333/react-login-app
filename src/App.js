@@ -100,6 +100,7 @@ function App(props) {
     };
 
     posts.push(Data);
+    allData.push(Data);
 
     setTitle("");
     setUser("");
@@ -117,6 +118,7 @@ function App(props) {
     });
 
     setPosts(newData);
+    setAllData(newData)
   };
 
  const searchHandler= (e)=>{
