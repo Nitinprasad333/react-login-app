@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'semantic-ui-css/semantic.min.css'
+import Login from './components/Login';
+import Routes from './components/Routes';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App />  */}
+    <Routes/>
   </React.StrictMode>,
   document.getElementById('root')
 );
