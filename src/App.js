@@ -3,6 +3,9 @@ import axios from "axios";
 import Logo from "./images/avatar.png";
 import { Card, Button, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Background from './images/colorful.jpg'; 
+import { connect } from "react-redux";
+import {showAleart,closeAleart, add, sub} from './redux/reducers/reduxActions/actions'
 
 function App(props) {
   let [posts, setPosts] = useState([]);
@@ -75,6 +78,7 @@ function App(props) {
   const showAllPosts = () => {
     setShow(true);
     console.log("my Array", myData);
+
   };
 
   const hideAllPosts = () => {
@@ -149,12 +153,17 @@ console.log("if dataaaaafound",foundrst)
     
   };
 
+
+
   return (
     
-    <div class="container" style={{ backgroundColor:'whitesmoke', height:showPosts ? "" : '100vh' }}>
+    <div class="container" style={{ 
+      backgroundColor:'whitesmoke',
+      backgroundImage:`url(${Background})`, 
+      height:showPosts ? "" : '100vh' }}>
       <div class="row" style={{ backgroundColor: "teal",height:40 }}>
         <div class="col-8">
-          <h2 style={{ color: "whitesmoke" }}>My Dashboard {b()}</h2>
+          <h2 style={{ color: "whitesmoke" }}>My Dashboard</h2>
         </div>
         <div class="col-4">
           <div
@@ -207,6 +216,7 @@ console.log("if dataaaaafound",foundrst)
             placeholder="*Enter title"
             value={title}
             onChange={addTitle}
+            name="title"
           />{" "}
           <br />
           <input
@@ -214,6 +224,7 @@ console.log("if dataaaaafound",foundrst)
             placeholder="*Enter userid"
             value={user}
             onChange={addUser}
+            name="password"
           />
           <br />
           <input
@@ -223,7 +234,7 @@ console.log("if dataaaaafound",foundrst)
           />
         </form>
       </div> <br/>
-<lable>{search}</lable>
+
       <input
             class="form-control"
             placeholder="search id"
@@ -235,12 +246,35 @@ console.log("if dataaaaafound",foundrst)
 
       <hr />
 
+
+      <Card style={{backgroundColor:'silver'}}>
+              <Card.Content >
+                <Card.Header>{props.count}</Card.Header>
+                <Card.Meta>Counter updating from Reducer</Card.Meta>
+              </Card.Content>
+              <Card.Content extra>
+                <div class="ui two buttons">
+                  <Button basic color="green" onClick={()=>props.add(1)}>
+                    Add
+                  </Button>
+                  <Button
+                    basic
+                    color="red"
+                    onClick={()=>props.sub(1)}
+                  >
+                    Subs
+                  </Button>
+                </div>
+              </Card.Content>
+            </Card>
+
+
       {
         showPosts && (
           <Card.Group>
          { search ?  posts.map((data, i) => {
           return (
-            <Card key={data.user}>
+            <Card key={data.id}>
               <Card.Content onClick={getRowData.bind(this, data)}>
                 <Image floated="right" size="mini" src={Logo} />
                 <Card.Header>{data.id}</Card.Header>
@@ -248,7 +282,7 @@ console.log("if dataaaaafound",foundrst)
                 <Card.Description>{data.title}</Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <div className="ui two buttons">
+                <div class="ui two buttons">
                   <Button basic color="green">
                     Approve
                   </Button>
@@ -273,7 +307,7 @@ console.log("if dataaaaafound",foundrst)
                 <Card.Description>{data.title}</Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <div className="ui two buttons">
+                <div class="ui two buttons">
                   <Button basic color="green">
                     Approve
                   </Button>
@@ -297,4 +331,17 @@ console.log("if dataaaaafound",foundrst)
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    count:state.countRed.counter
+  
+  };
+};
+
+export default connect(mapStateToProps, 
+  { showAleart, 
+    closeAleart,
+    add,
+    sub 
+})(App);
+

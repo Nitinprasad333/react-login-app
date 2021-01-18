@@ -6,12 +6,32 @@ import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import Login from './components/Login';
 import Routes from './components/Routes';
+import { createStore,applyMiddleware,compose,combineReducers  } from 'redux';
+import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
+import thunk from 'redux-thunk';
+import CounterReducer from './redux/reducers/countReducer';
+import watchIncrement from './saga/saga';
+import {rootReducer } from '../src/redux/reducers/rootReducer';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+
+
+const Store = createStore(rootReducer,/* preloadedState, */ 
+  composeEnhancers(applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(watchIncrement);
 
 ReactDOM.render(
+  <Provider store={Store}>
   <React.StrictMode>
-    {/* <App />  */}
     <Routes/>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
