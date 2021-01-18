@@ -40,7 +40,11 @@ const Login = (props) => {
   };
 
   const loginHandler =  () => {
-    if (user === "nitin" || password === 123) {
+    console.log("logincall")
+    if (user === "" && password === "") {
+      alert("Enter Inputs to Login");
+    }
+   else if (user === "nitin" && password === '123') {
       const tokDat = "_" + Math.random().toString(36).substr(2, 9);
       console.log("tooookekn 1", tokDat);
       setToken(tokDat);
@@ -50,13 +54,16 @@ const Login = (props) => {
       setUser("");
       setPassword("");
       console.log("tooookekn 2", token);
-    } else if (user === "" || password === "") {
-      alert("Enter Inputs to Login");
-    } else {
-      if (user !== "nitin" || password !== 123) {
-        alert("Invalid Credantials");
+    }    
+     else  if (user !== "nitin" ) {
+        
+        alert("Invalid Userid");
       }
-    }
+      else  if ( password !== '123') {
+        
+        alert("Invalid Password");
+      }
+    
   };
 
   const confirmHandler = () => {
@@ -81,7 +88,7 @@ const Login = (props) => {
         }}
       >
         <h1 style={{ textAlign: "center", color: "silver" }}>Login</h1>
-        <Form onSubmit={term ? loginHandler : confirmHandler}>
+        <Form onSubmit={ loginHandler }>
           <Form.Field>
             <label style={{ color: "#fff" }}>User Name</label>
             <input
