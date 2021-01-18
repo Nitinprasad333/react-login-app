@@ -162,10 +162,13 @@ console.log("if dataaaaafound",foundrst)
       backgroundColor:'whitesmoke',
       backgroundImage:`url(${Background})`, 
       height:showPosts ? "" : '100vh' }}>
+        
       <div class="row" style={{ backgroundColor: "teal",height:40 }}>
         <div class="col-8">
-          <h2 style={{ color: "whitesmoke" }}>{props.title}</h2> &nbsp; 
+          <h2 style={{ color: "whitesmoke" }}>{props.title}</h2>  
+         
         </div>
+        
         <div class="col-4">
           <div
             style={{
@@ -175,7 +178,7 @@ console.log("if dataaaaafound",foundrst)
             }}
             onClick={logOut}
           >
-          <p>{props.devName}</p>  <img src={Logo} width="30px" height="30px" /> &nbsp; <p>Logout</p>
+        <img src={Logo} width="30px" height="30px" /> &nbsp; <p>Logout</p>
           </div>
         </div>
       </div>
@@ -191,15 +194,6 @@ console.log("if dataaaaafound",foundrst)
           </button>
         </div>
 
-        <div class="col-8">
-          <button
-            class="btn btn-success sm"
-            onClick={()=>props.showDevName()}
-            style={{ width: "100px" }}
-          >
-            Show Developer
-          </button>
-        </div>
         <div class="col-4">
           <button class="btn btn-primary sm" onClick={hideAllPosts}>
             Hide Posts
@@ -256,35 +250,39 @@ console.log("if dataaaaafound",foundrst)
 
 
       <hr />
-
-
+      <div><Link to ='/dev'><a>Connect to Developer</a></Link></div> <br/>
+  {
+    !showPosts && (
       <Card style={{backgroundColor:'silver'}}>
-              <Card.Content >
-                <Card.Header>{props.count}</Card.Header>
-                <Card.Meta>Counter updating from Reducer</Card.Meta>
-              </Card.Content>
-              <Card.Content extra>
-                <div class="ui three buttons">
-                  <Button basic color="green" onClick={()=>props.add(1)}>
-                    Add
-                  </Button>
-                  <Button
-                    basic
-                    color="red"
-                    onClick={()=>props.sub(1)}
-                  >
-                    Subs
-                  </Button>
-                  <Button
-                    basic
-                    color="blue"
-                    onClick={()=>props.reset()}
-                  >
-                    Reset
-                  </Button>
-                </div>
-              </Card.Content>
-            </Card>
+      <Card.Content >
+        <Card.Header>{props.count}</Card.Header>
+        <Card.Meta>Counter updating from Reducer</Card.Meta>
+      </Card.Content>
+      <Card.Content extra>
+        <div class="ui three buttons">
+          <Button basic color="green" onClick={()=>props.add(1)}>
+            Add
+          </Button>
+          <Button
+            basic
+            color="red"
+            onClick={()=>props.sub(1)}
+          >
+            Subs
+          </Button>
+          <Button
+            basic
+            color="blue"
+            onClick={()=>props.reset()}
+          >
+            Reset
+          </Button>
+        </div>
+      </Card.Content>
+    </Card>
+    )
+  }
+      
 
 
       {

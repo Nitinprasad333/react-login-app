@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Login from "./Login";
 import App from "../App";
+import Devloper from "./Devloper";
 
 const Routes = (props) => {
   return (
@@ -11,9 +12,13 @@ const Routes = (props) => {
       <Switch>
         <Route exact path="/" component={Login} />
        {
-         props.appToken !== null ?   <Route exact path="/dashboard" component={App} />
+         props.appToken !== null ? 
+         <Switch>
+           <Route exact path="/dashboard" component={App} />
 
-         : <Route exact path="/" component={Login} />
+           <Route exact path="/dev" component={Devloper} />
+           </Switch>
+         : ""
 
        }
         
