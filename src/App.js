@@ -5,7 +5,8 @@ import { Card, Button, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Background from './images/colorful.jpg'; 
 import { connect } from "react-redux";
-import {showAleart,closeAleart, add, sub} from './redux/reducers/reduxActions/actions'
+import {showAleart,closeAleart, add, sub, reset,
+  showDevName,LogoutAction} from './redux/reducers/reduxActions/actions'
 
 function App(props) {
   let [posts, setPosts] = useState([]);
@@ -111,8 +112,8 @@ function App(props) {
   };
 
   const logOut = () => {
-    localStorage.removeItem("token");
-    props.history.push("/");
+    props.LogoutAction()
+     props.history.push("/");
   };
 
   const removePost = (data) => {
@@ -163,7 +164,7 @@ console.log("if dataaaaafound",foundrst)
       height:showPosts ? "" : '100vh' }}>
       <div class="row" style={{ backgroundColor: "teal",height:40 }}>
         <div class="col-8">
-          <h2 style={{ color: "whitesmoke" }}>My Dashboard</h2>
+          <h2 style={{ color: "whitesmoke" }}>{props.title}</h2> &nbsp; 
         </div>
         <div class="col-4">
           <div
@@ -174,7 +175,7 @@ console.log("if dataaaaafound",foundrst)
             }}
             onClick={logOut}
           >
-            <img src={Logo} width="30px" height="30px" /> &nbsp; <p>Logout</p>
+          <p>{props.devName}</p>  <img src={Logo} width="30px" height="30px" /> &nbsp; <p>Logout</p>
           </div>
         </div>
       </div>
@@ -187,6 +188,16 @@ console.log("if dataaaaafound",foundrst)
             style={{ width: "100px" }}
           >
             Show Posts
+          </button>
+        </div>
+
+        <div class="col-8">
+          <button
+            class="btn btn-success sm"
+            onClick={()=>props.showDevName()}
+            style={{ width: "100px" }}
+          >
+            Show Developer
           </button>
         </div>
         <div class="col-4">
@@ -253,7 +264,7 @@ console.log("if dataaaaafound",foundrst)
                 <Card.Meta>Counter updating from Reducer</Card.Meta>
               </Card.Content>
               <Card.Content extra>
-                <div class="ui two buttons">
+                <div class="ui three buttons">
                   <Button basic color="green" onClick={()=>props.add(1)}>
                     Add
                   </Button>
@@ -263,6 +274,13 @@ console.log("if dataaaaafound",foundrst)
                     onClick={()=>props.sub(1)}
                   >
                     Subs
+                  </Button>
+                  <Button
+                    basic
+                    color="blue"
+                    onClick={()=>props.reset()}
+                  >
+                    Reset
                   </Button>
                 </div>
               </Card.Content>
@@ -333,7 +351,10 @@ console.log("if dataaaaafound",foundrst)
 
 const mapStateToProps = state => {
   return {
-    count:state.countRed.counter
+    count:state.countRed.counter,
+    devName:state.countRed.devName,
+    title:state.countRed.title,
+    appToken:state.countRed.appToken,
   
   };
 };
@@ -342,6 +363,9 @@ export default connect(mapStateToProps,
   { showAleart, 
     closeAleart,
     add,
-    sub 
+    sub,
+    reset,
+    showDevName,
+    LogoutAction 
 })(App);
 

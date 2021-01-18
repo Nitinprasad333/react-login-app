@@ -1,6 +1,9 @@
 import {
     INCREMENT_ACT,ADD,DECREMENT_ACT,SUB,RESET,
-    SHOW_RESULT,SHOW_ALEART,CLOSE_ALEART,SEND_SUCCESS} from '../../../actions/actionTypes';
+    SHOW_RESULT,SHOW_ALEART,CLOSE_ALEART,SEND_SUCCESS,
+    DEV_NAME,
+    INIT_TOKEN,
+    LOGOUT_INIT} from '../../../actions/actionTypes';
 import axios from "axios";
 
 
@@ -89,4 +92,34 @@ export const incrementUpdate = () => {
 
       return myData;
      
+  };
+
+
+  export const showDevName = () => {
+    console.log("showDevName")
+    return {
+      type:DEV_NAME  
+   
+    };
+  };
+
+
+export const saveTokenAction = (token) => {
+    console.log("saveTokenAction",token)
+    return {
+      type: INIT_TOKEN,  
+      payload: {
+            token
+      }
+    };
+  };
+
+  export const LogoutAction = () => {
+    console.log("LogoutAction")
+    return {
+      type: LOGOUT_INIT,  
+      payload: {
+            
+      }
+    };
   };

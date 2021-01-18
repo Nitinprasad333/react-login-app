@@ -1,7 +1,13 @@
 import {
     INCREMENT_ASYNC,
     INCREMENT_ACT,
-    SEND_SUCCESS
+    SEND_SUCCESS,
+    SHOW_NAME,
+    DEV_NAME,
+    SAVE_TOKEN,
+    INIT_TOKEN,
+    LOG_OUT,
+    LOGOUT_INIT
   } from '../actions/actionTypes';
   import {
     takeLatest,
@@ -21,7 +27,7 @@ import {
   
   // This is Worker Saga Generator Function which work on Given Action Asyncronsally.Genrally use for Side Effects(API CALL Etc.)
   
-  function* incrementAsync() {
+  function* incrementAsync(action) {
     yield delay(3000);
     yield put({
       type: INCREMENT_ASYNC
@@ -53,6 +59,43 @@ import {
       return response1;
     } catch (e) {}
   }
+
+
+
+  function* showDevName(action) { 
+      console.log("ShowDevname Saga",action)
+      yield put({
+        type: SHOW_NAME,
+        payload: {
+          name: "Nitin"
+        }
+      });
+
+  }
+
+  function* saveUserToken(action) { 
+    console.log("saveUserToken Saga",action.payload)
+    yield put({
+      type: SAVE_TOKEN,
+      payload: {
+        tokenData: action.payload.token
+      }
+    });
+
+}
+
+function* logOutCurrUser(action) { 
+    console.log("logOutCurrUser Saga",action.payload)
+    yield put({
+      type: LOG_OUT,
+      payload: {
+      
+      }
+    });
+
+}
+  
+
   
   // This is Watcher Saga Generator Function which watch the Action "INCREMENT_ACT" in App then
   // run the second Argument of function i.e incrementAsync Function.
@@ -60,6 +103,12 @@ import {
   //  Rember that Saga take a Action & return new Updated Action.
   function* watchIncrement() {
     yield takeLatest(INCREMENT_ACT, incrementAsync);
+    yield takeLatest(DEV_NAME, showDevName);
+    yield takeLatest(INIT_TOKEN, saveUserToken);
+    yield takeLatest(LOGOUT_INIT, logOutCurrUser);
   }
   
   export default watchIncrement;
+
+
+  

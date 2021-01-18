@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import Background from "../images/colorful.jpg";
+import {saveTokenAction } from '../redux/reducers/reduxActions/actions';
+import { connect } from 'react-redux';
 
 const Login = (props) => {
   let [token, setToken] = useState("");
@@ -11,11 +13,14 @@ const Login = (props) => {
   useEffect(() => {
     console.log("props", props.history, token);
 
-    if (token) {
-      localStorage.setItem("token", token);
+    if (props.appToken !== null) {
+      //localStorage.setItem("token", token);
       props.history.push("/dashboard");
     }
-  }, [token]);
+    else{
+      props.history.push("/");
+    }
+  }, [props.appToken]);
 
   const userNameHandler = (e) => {
     setUser(e.target.value);
@@ -34,11 +39,12 @@ const Login = (props) => {
     setTerm(checked);
   };
 
-  const loginHandler = async () => {
+  const loginHandler =  () => {
     if (user === "nitin" || password === 123) {
       const tokDat = "_" + Math.random().toString(36).substr(2, 9);
       console.log("tooookekn 1", tokDat);
       setToken(tokDat);
+      props.saveTokenAction(tokDat);
 
       // alert("Login Successfully")
       setUser("");
@@ -113,4 +119,17 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    count:state.countRed.counter,
+    devName:state.countRed.devName,
+    title:state.countRed.title,
+    appToken:state.countRed.appToken,
+  
+  };
+};
+
+
+export default connect(mapStateToProps, 
+  { saveTokenAction })(Login);
+
