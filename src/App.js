@@ -3,10 +3,18 @@ import axios from "axios";
 import Logo from "./images/avatar.png";
 import { Card, Button, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import Background from './images/colorful.jpg'; 
+import Background from "./images/colorful.jpg";
 import { connect } from "react-redux";
-import {showAleart,closeAleart, add, sub, reset,
-  showDevName,LogoutAction,getPostsAction} from './redux/reducers/reduxActions/actions'
+import {
+  showAleart,
+  closeAleart,
+  add,
+  sub,
+  reset,
+  showDevName,
+  LogoutAction,
+  getPostsAction,
+} from "./redux/reducers/reduxActions/actions";
 
 function App(props) {
   let [posts, setPosts] = useState(props.allPosts);
@@ -14,7 +22,7 @@ function App(props) {
   let [showPosts, setShow] = useState(false);
   let [rowData, setRowData] = useState("");
   let [search, setSearch] = useState("");
-  let [found,setFound] = useState([]);
+  let [found, setFound] = useState([]);
   let [myData, setMyData] = useState([
     {
       userId: 1,
@@ -38,21 +46,19 @@ function App(props) {
     console.log("useeffectrun");
 
     // getPosts();
-    if (search ) {
-      console.log("ifblockuse",JSON.parse (search))
+    if (search) {
+      console.log("ifblockuse", JSON.parse(search));
       setTimeout(() => {
-        b(JSON.parse(search))
+        b(JSON.parse(search));
       }, 500);
-        
- 
-      console.log("ifblockuse data1",found)
+
+      console.log("ifblockuse data1", found);
     }
 
-    
-      setPosts(props.allPosts)
-      setAllData(props.allPosts)
-    
-    console.log("ifblockuse data",b())
+    setPosts(props.allPosts);
+    setAllData(props.allPosts);
+
+    console.log("ifblockuse data", b());
     console.log("useeffect App posts", posts);
     console.log("useeffect App  allData", allData);
     return () => (mounted = false);
@@ -81,19 +87,14 @@ function App(props) {
   };
 
   const showAllPosts = () => {
-    console.log("Showpostcall")
+    console.log("Showpostcall");
     let Login = "Login";
     setShow(true);
-  if (posts.length == 0 && allData.length == 0 ) {
-    props.getPostsAction(Login); 
-  }
-   
-    
+    if (posts.length == 0 && allData.length == 0) {
+      props.getPostsAction(Login);
+    }
 
-    
-   
     console.log("my Array", myData);
-
   };
 
   const hideAllPosts = () => {
@@ -126,10 +127,10 @@ function App(props) {
   };
 
   const logOut = () => {
-    let Logout = "Logout"
-    props.LogoutAction()
+    let Logout = "Logout";
+    props.LogoutAction();
     props.getPostsAction(Logout);
-     props.history.push("/");
+    props.history.push("/");
   };
 
   const removePost = (data) => {
@@ -139,52 +140,43 @@ function App(props) {
     });
 
     setPosts(newData);
-    setAllData(newData)
+    setAllData(newData);
   };
 
- const searchHandler= (e)=>{
-
-  const val = e.target.value
-   setSearch(val)
-   if (val !== search) {
-    console.log("if searchfinal",b())
-   }
-
-   
-
- 
-  }
+  const searchHandler = (e) => {
+    const val = e.target.value;
+    setSearch(val);
+    if (val !== search) {
+      console.log("if searchfinal", b());
+    }
+  };
 
   function b(idToSearch) {
     if (idToSearch && search !== "") {
-    let foundrst=  allData.filter(item => {
-        console.log("ifblockuse function b",item.id,idToSearch)
-        return   item.id == (idToSearch)
-      })
-console.log("if dataaaaafound",foundrst)
+      let foundrst = allData.filter((item) => {
+        console.log("ifblockuse function b", item.id, idToSearch);
+        return item.id == idToSearch;
+      });
+      console.log("if dataaaaafound", foundrst);
       setFound(foundrst);
-      setPosts(foundrst)
+      setPosts(foundrst);
     }
-
-
-    
-  };
-
-
+  }
 
   return (
-    
-    <div class="container" style={{ 
-      backgroundColor:'whitesmoke',
-      backgroundImage:`url(${Background})`, 
-      height:showPosts ? "" : '100vh' }}>
-        
-      <div class="row" style={{ backgroundColor: "teal",height:40 }}>
+    <div
+      class="container"
+      style={{
+        backgroundColor: "whitesmoke",
+        backgroundImage: `url(${Background})`,
+        height: showPosts ? "" : "100vh",
+      }}
+    >
+      <div class="row" style={{ backgroundColor: "teal", height: 40 }}>
         <div class="col-8">
-          <h2 style={{ color: "whitesmoke" }}>{props.title}</h2>  
-         
+          <h2 style={{ color: "whitesmoke" }}>{props.title}</h2>
         </div>
-        
+
         <div class="col-4">
           <div
             style={{
@@ -194,11 +186,10 @@ console.log("if dataaaaafound",foundrst)
             }}
             onClick={logOut}
           >
-        <img src={Logo} width="30px" height="30px" /> &nbsp; <p>Logout</p>
+            <img src={Logo} width="30px" height="30px" /> &nbsp; <p>Logout</p>
           </div>
         </div>
       </div>
-
       <div class="row" style={{ marginTop: "20px" }}>
         <div class="col-8">
           <button
@@ -209,14 +200,14 @@ console.log("if dataaaaafound",foundrst)
             Show Posts
           </button>
         </div>
-
-        <div class="col-4">
-          <button class="btn btn-primary sm" onClick={hideAllPosts}>
-            Hide Posts
-          </button>
-        </div>
+        {showPosts && (
+          <div class="col-4">
+            <button class="btn btn-warning sm" onClick={hideAllPosts}>
+              Hide Posts
+            </button>
+          </div>
+        )}
       </div>
-
       {rowData && showPosts && (
         <div>
           <lable>Selected Row Details are :</lable> <br />
@@ -227,7 +218,6 @@ console.log("if dataaaaafound",foundrst)
           <lable> Is Completed : {JSON.stringify(rowData.completed)}</lable>
         </div>
       )}
-
       <div class="form-group">
         {" "}
         <br />
@@ -254,134 +244,122 @@ console.log("if dataaaaafound",foundrst)
             class="btn btn-danger"
           />
         </form>
-      </div> <br/>
-
+      </div>{" "}
+      <br />
       <input
-            class="form-control"
-            placeholder="search id"
-            value={search}
-            type='number'
-            onChange={searchHandler.bind(this)}
-          />{" "}
-
-
+        class="form-control"
+        placeholder="search id"
+        value={search}
+        type="number"
+        onChange={searchHandler.bind(this)}
+      />{" "}
       <hr />
-      <div><Link to ='/dev'><a>Connect to Developer</a></Link></div> <br/>
+      <div>
+        <Link to="/dev">
+          <a>Connect to Developer</a>
+        </Link>
+      </div>{" "}
+      <br />
       {/* <div onClick={()=>props.getPostsAction()}><p>GET_POSTS</p></div> <br/> */}
-  {
-    !showPosts && (
-      <Card style={{backgroundColor:'silver'}}>
-      <Card.Content >
-        <Card.Header>{props.count}</Card.Header>
-        <Card.Meta>Counter updating from Reducer</Card.Meta>
-      </Card.Content>
-      <Card.Content extra>
-        <div class="ui three buttons">
-          <Button basic color="green" onClick={()=>props.add(1)}>
-            Add
-          </Button>
-          <Button
-            basic
-            color="red"
-            onClick={()=>props.sub(1)}
-          >
-            Subs
-          </Button>
-          <Button
-            basic
-            color="blue"
-            onClick={()=>props.reset()}
-          >
-            Reset
-          </Button>
-        </div>
-      </Card.Content>
-    </Card>
-    )
-  }
-      
-
-
-      {
-        showPosts && (
-          <Card.Group>
-         { search ?  posts.map((data, i) => {
-          return (
-            <Card key={data.id}>
-              <Card.Content onClick={getRowData.bind(this, data)}>
-                <Image floated="right" size="mini" src={Logo} />
-                <Card.Header>{data.id}</Card.Header>
-                <Card.Meta>{JSON.stringify(data.completed)}</Card.Meta>
-                <Card.Description>{data.title}</Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <div class="ui two buttons">
-                  <Button basic color="green">
-                    Approve
-                  </Button>
-                  <Button
-                    basic
-                    color="red"
-                    onClick={removePost.bind(this, data)}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              </Card.Content>
-            </Card>
-          );
-        }) : allData.map((data, i) => {
-          return (
-            <Card key={data.user}>
-              <Card.Content onClick={getRowData.bind(this, data)}>
-                <Image floated="right" size="mini" src={Logo} />
-                <Card.Header>{data.id}</Card.Header>
-                <Card.Meta>{JSON.stringify(data.completed)}</Card.Meta>
-                <Card.Description>{data.title}</Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <div class="ui two buttons">
-                  <Button basic color="green">
-                    Approve
-                  </Button>
-                  <Button
-                    basic
-                    color="red"
-                    onClick={removePost.bind(this, data)}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              </Card.Content>
-            </Card>
-          );
-        }) }
-      </Card.Group>
-        )
-      }
-      
+      {!showPosts && (
+        <Card style={{ backgroundColor: "silver" }}>
+          <Card.Content>
+            <Card.Header>{props.count}</Card.Header>
+            <Card.Meta>Counter updating from Reducer</Card.Meta>
+          </Card.Content>
+          <Card.Content extra>
+            <div class="ui three buttons">
+              <Button basic color="green" onClick={() => props.add(1)}>
+                Add
+              </Button>
+              <Button basic color="red" onClick={() => props.sub(1)}>
+                Subs
+              </Button>
+              <Button basic color="blue" onClick={() => props.reset()}>
+                Reset
+              </Button>
+            </div>
+          </Card.Content>
+        </Card>
+      )}
+      {showPosts && (
+        <Card.Group>
+          {search
+            ? posts.map((data, i) => {
+                return (
+                  <Card key={data.id}>
+                    <Card.Content onClick={getRowData.bind(this, data)}>
+                      <Image floated="right" size="mini" src={Logo} />
+                      <Card.Header>{data.id}</Card.Header>
+                      <Card.Meta>{JSON.stringify(data.completed)}</Card.Meta>
+                      <Card.Description>{data.title}</Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                      <div class="ui two buttons">
+                        <Button basic color="green">
+                          Approve
+                        </Button>
+                        <Button
+                          basic
+                          color="red"
+                          onClick={removePost.bind(this, data)}
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    </Card.Content>
+                  </Card>
+                );
+              })
+            : allData.map((data, i) => {
+                return (
+                  <Card key={data.user}>
+                    <Card.Content onClick={getRowData.bind(this, data)}>
+                      <Image floated="right" size="mini" src={Logo} />
+                      <Card.Header>{data.id}</Card.Header>
+                      <Card.Meta>{JSON.stringify(data.completed)}</Card.Meta>
+                      <Card.Description>{data.title}</Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                      <div class="ui two buttons">
+                        <Button basic color="green">
+                          Approve
+                        </Button>
+                        <Button
+                          basic
+                          color="red"
+                          onClick={removePost.bind(this, data)}
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    </Card.Content>
+                  </Card>
+                );
+              })}
+        </Card.Group>
+      )}
     </div>
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    count:state.countRed.counter,
-    devName:state.countRed.devName,
-    title:state.countRed.title,
-    appToken:state.countRed.appToken,
-    allPosts:state.countRed.allPosts
+    count: state.countRed.counter,
+    devName: state.countRed.devName,
+    title: state.countRed.title,
+    appToken: state.countRed.appToken,
+    allPosts: state.countRed.allPosts,
   };
 };
 
-export default connect(mapStateToProps, 
-  { showAleart, 
-    closeAleart,
-    add,
-    sub,
-    reset,
-    showDevName,
-    LogoutAction,
-    getPostsAction 
+export default connect(mapStateToProps, {
+  showAleart,
+  closeAleart,
+  add,
+  sub,
+  reset,
+  showDevName,
+  LogoutAction,
+  getPostsAction,
 })(App);
-

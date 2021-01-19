@@ -22,6 +22,8 @@ import {
   
   import { getDummyApi } from '../redux/reducers/reduxActions/actions';
   import { getPostsApi } from '../common/apis';
+import { getAllPosts } from '../common/apisMethods';
+import { GET_POST_URL } from '../common/apiUrl';
   
   // This is Worker Saga Generator Function which work on Given Action Asyncronsally.Genrally use for Side Effects(API CALL Etc.)
   
@@ -98,8 +100,7 @@ function* getPosts(action){
   console.log("getposts sagacall",payload)
 yield put({type:GET_POSTS_LOADING})
 try{
- const response =  yield call(getPostsApi)
-
+ const response =  yield call(getAllPosts,`${GET_POST_URL}`)
  if (response) {
    console.log("response from saga api",response.data)
    if (payload.from === "Login") {

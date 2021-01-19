@@ -3,6 +3,8 @@ import { Button, Checkbox, Form } from "semantic-ui-react";
 import Background from "../images/colorful.jpg";
 import {saveTokenAction } from '../redux/reducers/reduxActions/actions';
 import { connect } from 'react-redux';
+import logo from '../../src/logo.svg';
+import '../../src/App.css'
 
 const Login = (props) => {
   let [token, setToken] = useState("");
@@ -41,30 +43,39 @@ const Login = (props) => {
 
   const loginHandler =  () => {
     console.log("logincall")
-    if (user === "" && password === "") {
-      alert("Enter Inputs to Login");
+    if (term) {
+      if (user === "" && password === "") {
+        alert("Enter Inputs to Login");
+      }
+     else if (user === "nitin" && password === '123') {
+        const tokDat = "_" + Math.random().toString(36).substr(2, 9);
+        console.log("tooookekn 1", tokDat);
+        setToken(tokDat);
+        props.saveTokenAction(tokDat);
+  
+        // alert("Login Successfully")
+        setUser("");
+        setPassword("");
+        console.log("tooookekn 2", token);
+      }    
+       else  if (user !== "nitin" ) {
+          
+          alert("Invalid Userid");
+        }
+        else  if ( password !== '123') {
+          
+          alert("Invalid Password");
+        }
     }
-   else if (user === "nitin" && password === '123') {
-      const tokDat = "_" + Math.random().toString(36).substr(2, 9);
-      console.log("tooookekn 1", tokDat);
-      setToken(tokDat);
-      props.saveTokenAction(tokDat);
 
-      // alert("Login Successfully")
-      setUser("");
-      setPassword("");
-      console.log("tooookekn 2", token);
-    }    
-     else  if (user !== "nitin" ) {
-        
-        alert("Invalid Userid");
-      }
-      else  if ( password !== '123') {
-        
-        alert("Invalid Password");
-      }
+    else {
+      alert("Please select T&C")
+    }
+    
     
   };
+
+  
 
   const confirmHandler = () => {
     alert("select agree for t&c");
@@ -87,6 +98,12 @@ const Login = (props) => {
           marginTop: "150px",
         }}
       >
+        
+         <div>
+         <img src={logo} className="App-logo" alt="logo" />
+      </div>
+        
+
         <h1 style={{ textAlign: "center", color: "silver" }}>Login</h1>
         <Form onSubmit={ loginHandler }>
           <Form.Field>
@@ -96,6 +113,7 @@ const Login = (props) => {
               onChange={userNameHandler}
               value={user}
               style={{ borderRadius: "20px" }}
+              autoFocus={true}
             />
           </Form.Field>
           <Form.Field>
