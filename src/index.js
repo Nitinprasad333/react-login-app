@@ -14,6 +14,7 @@ import {rootReducer } from '../src/redux/reducers/rootReducer';
 import { loadState, saveState } from '../src/common/commonState';
 import _ from "lodash";
 import watchersRootSaga from './saga/rootSaga';
+import * as serviceWorker from './serviceWorker';
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
@@ -51,3 +52,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+serviceWorker.register();

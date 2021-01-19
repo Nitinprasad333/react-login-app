@@ -7,23 +7,21 @@ import {
     SAVE_TOKEN,
     INIT_TOKEN,
     LOG_OUT,
-    LOGOUT_INIT
+    LOGOUT_INIT,
+    GET_POSTS,GET_POSTS_LOADING,
+    GET_POSTS_SUCCESS,GET_POSTS_ERROR
   } from '../actions/actionTypes';
   import {
     takeLatest,
-    takeEvery,
     call,
     put,
     delay,
-    resolve,
-    take,
-    fork,
-    cancel
+    
   } from "redux-saga/effects";
  
-  import axios from "axios";
   
-  import { getDummyApi } from '../redux/reducers/reduxActions/actions'
+  import { getDummyApi } from '../redux/reducers/reduxActions/actions';
+  import { getPostsApi } from '../common/apis';
   
   // This is Worker Saga Generator Function which work on Given Action Asyncronsally.Genrally use for Side Effects(API CALL Etc.)
   
@@ -94,6 +92,45 @@ function* logOutCurrUser(action) {
     });
 
 }
+
+function* getPosts(action){ 
+  const  payload  = action.payload;
+  console.log("getposts sagacall",payload)
+yield put({type:GET_POSTS_LOADING})
+try{
+ const response =  yield call(getPostsApi)
+
+ if (response) {
+   console.log("response from saga api",response.data)
+   if (payload.from === "Login") {
+    yield put({
+      type:GET_POSTS_SUCCESS,
+      payload:{
+        postsData:response.data
+      }
+    })
+   }
+   else{
+    yield put({
+      type:GET_POSTS_SUCCESS,
+      payload:{
+        postsData:[]
+      }
+    })
+   }
+  
+ }
+
+}
+catch(err){
+yield put({
+  type:GET_POSTS_ERROR,
+  payload:{
+    apiError:err
+  }
+})
+}
+}
   
 
   
@@ -106,6 +143,7 @@ function* logOutCurrUser(action) {
     yield takeLatest(DEV_NAME, showDevName);
     yield takeLatest(INIT_TOKEN, saveUserToken);
     yield takeLatest(LOGOUT_INIT, logOutCurrUser);
+    yield takeLatest(GET_POSTS, getPosts);
   }
   
   export default watchIncrement;

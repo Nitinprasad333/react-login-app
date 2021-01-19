@@ -11,7 +11,10 @@ import {
   SEND_SUCCESS,
   SHOW_NAME,
   SAVE_TOKEN,
-  LOG_OUT
+  LOG_OUT,
+  GET_POSTS_LOADING,
+  GET_POSTS_SUCCESS,
+  GET_POSTS_ERROR
 } from  '../../actions/actionTypes';
 
 
@@ -21,7 +24,10 @@ const initialState = {
   apiDataUse:{},
   devName:'',
   title:"React CRUD App",
-  appToken:null
+  appToken:null,
+  isLoading:false,
+  isError:false,
+  allPosts:null
 };
 
 const CounterReducer = (state = initialState, action) => {
@@ -64,6 +70,23 @@ const CounterReducer = (state = initialState, action) => {
               return { ...state,
                 appToken:null
             };
+            case GET_POSTS_LOADING:
+              console.log("GET_POSTS_LOADING",action.payload)
+            return { ...state,
+              isLoading:true
+          };
+          case GET_POSTS_SUCCESS:
+            console.log("GET_POSTS_SUCCESS Reducer",action.payload)
+          return { 
+            ...state,
+            allPosts:action.payload.postsData
+        };
+        case GET_POSTS_ERROR:
+          console.log("GET_POSTS_ERROR Reducer",action.payload)
+        return { 
+          ...state,
+          isError:action.payload.apiError
+      };
     default:
       return state;
   }

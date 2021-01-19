@@ -1,9 +1,10 @@
 import {
     INCREMENT_ACT,ADD,DECREMENT_ACT,SUB,RESET,
-    SHOW_RESULT,SHOW_ALEART,CLOSE_ALEART,SEND_SUCCESS,
+    SHOW_RESULT,SHOW_ALEART,CLOSE_ALEART,
     DEV_NAME,
     INIT_TOKEN,
-    LOGOUT_INIT} from '../../../actions/actionTypes';
+    LOGOUT_INIT,
+    GET_POSTS} from '../../../actions/actionTypes';
 import axios from "axios";
 
 
@@ -120,6 +121,16 @@ export const saveTokenAction = (token) => {
       type: LOGOUT_INIT,  
       payload: {
             
+      }
+    };
+  };
+
+  export const getPostsAction = (data) => {
+    console.log("getPostsAction",data)
+    return {
+      type: GET_POSTS,  
+      payload: {
+        from:data
       }
     };
   };

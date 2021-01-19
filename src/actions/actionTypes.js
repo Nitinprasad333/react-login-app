@@ -14,4 +14,9 @@ export const SAVE_TOKEN = "SAVE_TOKEN";
 export const INIT_TOKEN = "INIT_TOKEN";
 export const LOG_OUT = "LOG_OUT";
 export const LOGOUT_INIT = "LOGOUT_INIT";
+export const GET_POSTS = "GET_POSTS";
+export const GET_POSTS_LOADING = "GET_POSTS_LOADING";
+export const GET_POSTS_SUCCESS = "GET_POSTS_SUCCESS";
+export const GET_POSTS_ERROR = "GET_POSTS_ERROR";
+
 

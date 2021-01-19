@@ -1,0 +1,1 @@
+export const GET_POST_URL = "http://jsonplaceholder.typicode.com/todos";

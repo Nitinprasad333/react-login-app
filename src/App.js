@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import Background from './images/colorful.jpg'; 
 import { connect } from "react-redux";
 import {showAleart,closeAleart, add, sub, reset,
-  showDevName,LogoutAction} from './redux/reducers/reduxActions/actions'
+  showDevName,LogoutAction,getPostsAction} from './redux/reducers/reduxActions/actions'
 
 function App(props) {
-  let [posts, setPosts] = useState([]);
-  let [allData, setAllData] = useState([]);
+  let [posts, setPosts] = useState(props.allPosts);
+  let [allData, setAllData] = useState(props.allPosts);
   let [showPosts, setShow] = useState(false);
   let [rowData, setRowData] = useState("");
   let [search, setSearch] = useState("");
@@ -37,9 +37,7 @@ function App(props) {
     let mounted = true;
     console.log("useeffectrun");
 
-
-    
-    getPosts();
+    // getPosts();
     if (search ) {
       console.log("ifblockuse",JSON.parse (search))
       setTimeout(() => {
@@ -49,27 +47,33 @@ function App(props) {
  
       console.log("ifblockuse data1",found)
     }
-    console.log("ifblockuse data",b())
-    console.log("posts", posts);
-    return () => (mounted = false);
-  }, [search]);
 
-  const getPosts = () => {
-    if (posts.length === 0) {
-      return axios
-        .get("http://jsonplaceholder.typicode.com/todos")
-        .then((rst) => {
-          console.log(rst);
-          if (rst) {
-            setPosts((rst.data));
-            setAllData(rst.data)
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
+    
+      setPosts(props.allPosts)
+      setAllData(props.allPosts)
+    
+    console.log("ifblockuse data",b())
+    console.log("useeffect App posts", posts);
+    console.log("useeffect App  allData", allData);
+    return () => (mounted = false);
+  }, [props]);
+
+  // const getPosts = () => {
+  //   if (posts.length === 0) {
+  //     return axios
+  //       .get("http://jsonplaceholder.typicode.com/todos")
+  //       .then((rst) => {
+  //         console.log(rst);
+  //         if (rst) {
+  //           setPosts((rst.data));
+  //           setAllData(rst.data)
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // };
 
   const getRowData = (data) => {
     console.log("row Data", data);
@@ -77,7 +81,17 @@ function App(props) {
   };
 
   const showAllPosts = () => {
+    console.log("Showpostcall")
+    let Login = "Login";
     setShow(true);
+  if (posts.length == 0 && allData.length == 0 ) {
+    props.getPostsAction(Login); 
+  }
+   
+    
+
+    
+   
     console.log("my Array", myData);
 
   };
@@ -112,7 +126,9 @@ function App(props) {
   };
 
   const logOut = () => {
+    let Logout = "Logout"
     props.LogoutAction()
+    props.getPostsAction(Logout);
      props.history.push("/");
   };
 
@@ -251,6 +267,7 @@ console.log("if dataaaaafound",foundrst)
 
       <hr />
       <div><Link to ='/dev'><a>Connect to Developer</a></Link></div> <br/>
+      {/* <div onClick={()=>props.getPostsAction()}><p>GET_POSTS</p></div> <br/> */}
   {
     !showPosts && (
       <Card style={{backgroundColor:'silver'}}>
@@ -353,7 +370,7 @@ const mapStateToProps = state => {
     devName:state.countRed.devName,
     title:state.countRed.title,
     appToken:state.countRed.appToken,
-  
+    allPosts:state.countRed.allPosts
   };
 };
 
@@ -364,6 +381,7 @@ export default connect(mapStateToProps,
     sub,
     reset,
     showDevName,
-    LogoutAction 
+    LogoutAction,
+    getPostsAction 
 })(App);
 
