@@ -9,7 +9,7 @@ import {
     LOG_OUT,
     LOGOUT_INIT,
     GET_POSTS,GET_POSTS_LOADING,
-    GET_POSTS_SUCCESS,GET_POSTS_ERROR
+    GET_POSTS_SUCCESS,GET_POSTS_ERROR, GET_SINGLE_POSTS_LOADING, GET_SINGLE_POSTS_SUCCESS, GET_SINGLE_POSTS_ERROR, GET_SINGLE_POST
   } from '../actions/actionTypes';
   import {
     takeLatest,
@@ -22,8 +22,8 @@ import {
   
   import { getDummyApi } from '../redux/reducers/reduxActions/actions';
   import { getPostsApi } from '../common/apis';
-import { getAllPosts } from '../common/apisMethods';
-import { GET_POST_URL } from '../common/apiUrl';
+import { getAllPosts,getSinglePost } from '../common/apisMethods';
+import { GET_POST_URL,GET_POSTID_URL } from '../common/apiUrl';
   
   // This is Worker Saga Generator Function which work on Given Action Asyncronsally.Genrally use for Side Effects(API CALL Etc.)
   
@@ -75,10 +75,11 @@ import { GET_POST_URL } from '../common/apiUrl';
 
   function* saveUserToken(action) { 
     console.log("saveUserToken Saga",action.payload)
+    const payload = action.payload;
     yield put({
       type: SAVE_TOKEN,
       payload: {
-        tokenData: action.payload.token
+        tokenData: payload.token
       }
     });
 
@@ -99,8 +100,12 @@ function* getPosts(action){
   const  payload  = action.payload;
   console.log("getposts sagacall",payload)
 yield put({type:GET_POSTS_LOADING})
+const Data = {
+  name:"Nitin",
+  password:111
+}
 try{
- const response =  yield call(getAllPosts,`${GET_POST_URL}`)
+ const response =  yield call(getAllPosts,`${GET_POST_URL}`,Data)
  if (response) {
    console.log("response from saga api",response.data)
    if (payload.from === "Login") {
@@ -132,6 +137,41 @@ yield put({
 })
 }
 }
+
+function* getSinglePostSaga(action){ 
+  const  payload  = action.payload;
+  console.log("getSinglePost sagacall",payload)
+yield put({type:GET_SINGLE_POSTS_LOADING})
+const Data = {
+  searchby:"Nitin",
+  searchid: payload.id
+
+}
+try{
+ const response =  yield call(getSinglePost,`${GET_POSTID_URL}${payload.id}`,Data)
+ if (response) {
+   console.log("response from getSinglePostSaga api",response.data)
+
+    yield put({
+      type:GET_SINGLE_POSTS_SUCCESS,
+      payload:{
+        singleData:response.data
+      }
+    })
+     
+  
+ }
+
+}
+catch(err){
+yield put({
+  type:GET_SINGLE_POSTS_ERROR,
+  payload:{
+    apiError:err
+  }
+})
+}
+}
   
 
   
@@ -145,6 +185,7 @@ yield put({
     yield takeLatest(INIT_TOKEN, saveUserToken);
     yield takeLatest(LOGOUT_INIT, logOutCurrUser);
     yield takeLatest(GET_POSTS, getPosts);
+    yield takeLatest(GET_SINGLE_POST, getSinglePostSaga);
   }
   
   export default watchIncrement;

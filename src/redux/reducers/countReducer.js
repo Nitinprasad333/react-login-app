@@ -14,7 +14,10 @@ import {
   LOG_OUT,
   GET_POSTS_LOADING,
   GET_POSTS_SUCCESS,
-  GET_POSTS_ERROR
+  GET_POSTS_ERROR,
+  GET_SINGLE_POSTS_LOADING,
+  GET_SINGLE_POSTS_SUCCESS,
+  GET_SINGLE_POSTS_ERROR
 } from  '../../actions/actionTypes';
 
 
@@ -27,7 +30,8 @@ const initialState = {
   appToken:null,
   isLoading:false,
   isError:false,
-  allPosts:null
+  allPosts:null,
+  singlePost:null
 };
 
 const CounterReducer = (state = initialState, action) => {
@@ -87,6 +91,25 @@ const CounterReducer = (state = initialState, action) => {
           ...state,
           isError:action.payload.apiError
       };
+
+      case GET_SINGLE_POSTS_LOADING:
+        console.log("GET_SINGLE_POSTS_LOADING",action.payload)
+      return { ...state,
+        isLoading:true
+    };
+    case GET_SINGLE_POSTS_SUCCESS:
+      console.log("GET_SINGLE_POSTS_SUCCESS Reducer",action.payload)
+    return { 
+      ...state,
+      singlePost:action.payload.singleData
+  };
+  case GET_SINGLE_POSTS_ERROR:
+    console.log("GET_POSTS_ERROR Reducer",action.payload)
+  return { 
+    ...state,
+    isError:action.payload.apiError
+};
+
     default:
       return state;
   }

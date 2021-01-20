@@ -99,9 +99,9 @@ const Login = (props) => {
         }}
       >
         
-         <div>
+         {/* <div>
          <img src={logo} className="App-logo" alt="logo" />
-      </div>
+      </div> */}
         
 
         <h1 style={{ textAlign: "center", color: "silver" }}>Login</h1>

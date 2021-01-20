@@ -1,1 +1,2 @@
-export const GET_POST_URL = "http://jsonplaceholder.typicode.com/todos";
+export const GET_POST_URL = "/todos";
+export const GET_POSTID_URL = "/todos/";

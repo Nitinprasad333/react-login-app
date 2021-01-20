@@ -14,6 +14,7 @@ import {
   showDevName,
   LogoutAction,
   getPostsAction,
+  getPostSingle
 } from "./redux/reducers/reduxActions/actions";
 
 function App(props) {
@@ -62,7 +63,7 @@ function App(props) {
     console.log("useeffect App posts", posts);
     console.log("useeffect App  allData", allData);
     return () => (mounted = false);
-  }, [props]);
+  }, [props,search]);
 
   // const getPosts = () => {
   //   if (posts.length === 0) {
@@ -146,6 +147,7 @@ function App(props) {
   const searchHandler = (e) => {
     const val = e.target.value;
     setSearch(val);
+    props.getPostSingle(val)
     if (val !== search) {
       console.log("if searchfinal", b());
     }
@@ -160,6 +162,8 @@ function App(props) {
       console.log("if dataaaaafound", foundrst);
       setFound(foundrst);
       setPosts(foundrst);
+     
+     
     }
   }
 
@@ -258,7 +262,11 @@ function App(props) {
         <Link to="/dev">
           <a>Connect to Developer</a>
         </Link>
-      </div>{" "}
+      </div>{" "} <br/>
+
+     {
+       search && ( <p style={{color:'#fff'}}>Search Content -:{props.singlePost.title}</p>)
+     }
       <br />
       {/* <div onClick={()=>props.getPostsAction()}><p>GET_POSTS</p></div> <br/> */}
       {!showPosts && (
@@ -350,6 +358,7 @@ const mapStateToProps = (state) => {
     title: state.countRed.title,
     appToken: state.countRed.appToken,
     allPosts: state.countRed.allPosts,
+    singlePost: state.countRed.singlePost,
   };
 };
 
@@ -362,4 +371,5 @@ export default connect(mapStateToProps, {
   showDevName,
   LogoutAction,
   getPostsAction,
+  getPostSingle
 })(App);

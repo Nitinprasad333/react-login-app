@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import Login from "./Login";
 import App from "../App";
 import Devloper from "./Devloper";
+import IdleTimer from 'react-idle-timer';
 
 const Routes = (props) => {
+
+
   return (
     <BrowserRouter>
       <Switch>

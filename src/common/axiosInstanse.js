@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { BASE_URL } from '../main'
 
 export const axiosInst = axios.create({
-    baseURL: '',
+    baseURL:BASE_URL ,
     timeout: 1000,
     headers: {
         "Content-Type": "application/json",

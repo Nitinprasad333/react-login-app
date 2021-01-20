@@ -4,7 +4,8 @@ import {
     DEV_NAME,
     INIT_TOKEN,
     LOGOUT_INIT,
-    GET_POSTS} from '../../../actions/actionTypes';
+    GET_POSTS,
+    GET_SINGLE_POST} from '../../../actions/actionTypes';
 import axios from "axios";
 
 
@@ -131,6 +132,16 @@ export const saveTokenAction = (token) => {
       type: GET_POSTS,  
       payload: {
         from:data
+      }
+    };
+  };
+
+  export const getPostSingle = (id) => {
+    console.log("getPostsAction",id)
+    return {
+      type: GET_SINGLE_POST,  
+      payload: {
+        id:id
       }
     };
   };
