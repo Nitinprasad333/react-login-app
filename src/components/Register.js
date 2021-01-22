@@ -105,6 +105,7 @@ const Register = (props) => {
               value={password}
               style={{ borderRadius: "20px" }}
               type="password"
+              maxLength= "8"
             />
           </Form.Field>
 
@@ -126,8 +127,8 @@ const Register = (props) => {
               onChange={inputHandler('mobile')}
               value={mobile}
               style={{ borderRadius: "20px" }}
-              type="number"
-              pattern="[0-9]{5}"
+              type="tel"
+              maxLength= "10"
             />
           </Form.Field>
       

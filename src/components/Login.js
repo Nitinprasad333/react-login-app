@@ -129,6 +129,7 @@ const Login = (props) => {
               onChange={passwordHandler}
               value={password}
               style={{ borderRadius: "20px" }}
+              maxLength="8"
             />
           </Form.Field>
           <Form.Field>

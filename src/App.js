@@ -14,9 +14,10 @@ import {
   showDevName,
   LogoutAction,
   getPostsAction,
-  getPostSingle
+  getPostSingle,
 } from "./redux/reducers/reduxActions/actions";
 import Header from "./components/Header";
+import Postcard from "./components/Postcard";
 
 function App(props) {
   let [posts, setPosts] = useState(props.allPosts);
@@ -46,7 +47,7 @@ function App(props) {
   useEffect(() => {
     let mounted = true;
     console.log("Dash useeffectrun");
-  console.log(isClientOrServer())  
+    console.log(isClientOrServer());
 
     // getPosts();
     if (search) {
@@ -65,7 +66,7 @@ function App(props) {
     console.log("useeffect App posts", posts);
     console.log("useeffect App  allData", allData);
     return () => (mounted = false);
-  }, [props,search]);
+  }, [props, search]);
 
   // const getPosts = () => {
   //   if (posts.length === 0) {
@@ -149,7 +150,7 @@ function App(props) {
   const searchHandler = (e) => {
     const val = e.target.value;
     setSearch(val);
-    props.getPostSingle(val)
+    props.getPostSingle(val);
     if (val !== search) {
       console.log("if searchfinal", b());
     }
@@ -164,13 +165,13 @@ function App(props) {
       console.log("if dataaaaafound", foundrst);
       setFound(foundrst);
       setPosts(foundrst);
-     
-     
     }
   }
 
   const isClientOrServer = () => {
-    return (typeof window !== 'undefined' && window.document) ? 'client side' : 'server side';
+    return typeof window !== "undefined" && window.document
+      ? "client side"
+      : "server side";
   };
 
   return (
@@ -201,16 +202,13 @@ function App(props) {
           </div>
         </div>
       </div> */}
-     
-     <Header
-     logOut= {logOut} 
-     showAllPosts={showAllPosts}
-     hideAllPosts={hideAllPosts}
-     showPosts={showPosts}
-     history={props.history}
-     />
-    
- 
+      <Header
+        logOut={logOut}
+        showAllPosts={showAllPosts}
+        hideAllPosts={hideAllPosts}
+        showPosts={showPosts}
+        history={props.history}
+      />
       {/* <div class="row" style={{ marginTop: "20px" }}>
         <div class="col-8">
           <button
@@ -267,22 +265,21 @@ function App(props) {
         </form>
       </div>{" "}
       <br />
-      {
-        showPosts && ( <input
+      {showPosts && (
+        <input
           class="form-control"
           placeholder="search id"
           value={search}
           type="number"
           onChange={searchHandler.bind(this)}
-        />)
-      }
-     {" "}
+        />
+      )}{" "}
       <hr />
-  
-
-     {
-       search && ( <p style={{color:'#fff'}}>Search Content -:{props.singlePost.title}</p>)
-     }
+      {search && (
+        <p style={{ color: "#fff" }}>
+          Search Content -:{props.singlePost.title}
+        </p>
+      )}
       <br />
       {/* <div onClick={()=>props.getPostsAction()}><p>GET_POSTS</p></div> <br/> */}
       {!showPosts && (
@@ -307,61 +304,27 @@ function App(props) {
         </Card>
       )}
       {showPosts && (
-        <Card.Group>
+        <div>
           {search
             ? posts.map((data, i) => {
                 return (
-                  <Card key={data.id} style={{ backgroundColor: "#333" }}>
-                    <Card.Content onClick={getRowData.bind(this, data)}>
-                      <Image floated="right" size="mini" src={Logo} />
-                      <Card.Header style={{color:"fff"}}>{data.id}</Card.Header>
-                      <Card.Meta style={{color:"fff"}}>{JSON.stringify(data.completed)}</Card.Meta>
-                      <Card.Description style={{color:"fff"}}>{data.title}</Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                      <div class="ui two buttons">
-                        <Button basic color="green">
-                          Approve
-                        </Button>
-                        <Button
-                          basic
-                          color="red"
-                          onClick={removePost.bind(this, data)}
-                        >
-                          Remove
-                        </Button>
-                      </div>
-                    </Card.Content>
-                  </Card>
+                  <Postcard
+                    data={data}
+                    getRowData={getRowData}
+                    removePost={removePost}
+                  />
                 );
               })
             : allData.map((data, i) => {
                 return (
-                  <Card key={data.user} style={{ backgroundColor: "#333" }}>
-                    <Card.Content onClick={getRowData.bind(this, data)}>
-                      <Image floated="right" size="mini" src={Logo} />
-                      <Card.Header style={{color:"#fff"}}>{data.id}</Card.Header>
-                      <Card.Meta style={{color:"#fff"}}>{JSON.stringify(data.completed)}</Card.Meta>
-                      <Card.Description style={{color:"#fff"}}>{data.title}</Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                      <div class="ui two buttons">
-                        <Button basic color="green">
-                          Approve
-                        </Button>
-                        <Button
-                          basic
-                          color="red"
-                          onClick={removePost.bind(this, data)}
-                        >
-                          Remove
-                        </Button>
-                      </div>
-                    </Card.Content>
-                  </Card>
+                  <Postcard
+                    data={data}
+                    getRowData={getRowData}
+                    removePost={removePost}
+                  />
                 );
               })}
-        </Card.Group>
+        </div>
       )}
     </div>
   );
@@ -387,5 +350,5 @@ export default connect(mapStateToProps, {
   showDevName,
   LogoutAction,
   getPostsAction,
-  getPostSingle
+  getPostSingle,
 })(App);
