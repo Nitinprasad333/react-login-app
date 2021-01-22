@@ -5,6 +5,7 @@ import {saveTokenAction } from '../redux/reducers/reduxActions/actions';
 import { connect } from 'react-redux';
 import logo from '../../src/logo.svg';
 import '../../src/App.css'
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
   let [token, setToken] = useState("");
@@ -14,6 +15,7 @@ const Login = (props) => {
 
   useEffect(() => {
     console.log("props", props.history, token);
+    console.log(isClientOrServer())
 
     if (props.appToken !== null) {
       //localStorage.setItem("token", token);
@@ -23,6 +25,10 @@ const Login = (props) => {
       props.history.push("/");
     }
   }, [props.appToken]);
+
+  const isClientOrServer = () => {
+    return (typeof window !== 'undefined' && window.document) ? 'client side' : 'server side';
+  };
 
   const userNameHandler = (e) => {
     setUser(e.target.value);
@@ -86,9 +92,9 @@ const Login = (props) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        backgroundColor: "whitesmoke",
+        backgroundColor: "#333",
         height: "100vh",
-        backgroundImage: `url(${Background})`,
+        // backgroundImage: `url(${Background})`,
       }}
     >
       <div
@@ -138,6 +144,12 @@ const Login = (props) => {
           >
             Signin
           </Button>
+          <Form.Field style={{textAlign:'center'}}>
+            <Link to= "/signup">
+            <label>Don't have Account,Signup ?</label>
+            </Link>
+        
+          </Form.Field>
         </Form>
       </div>
     </div>

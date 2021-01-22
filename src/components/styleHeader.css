@@ -1,0 +1,47 @@
+li{
+    display: inline;
+    float: left;
+   
+}
+
+a {
+    display: block;
+    padding: 4px;
+    background-color: #dddddd;
+  }
+
+  ul {
+
+    list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:#333;
+  position: sticky;
+  top: 0;
+  }
+
+
+  li h6:hover {
+    background-color:  #4CAF50;
+   
+  }
+
+  .active {
+    background-color: #141414;
+  }
+
+  li h6 {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-weight: bold;
+   
+  }
+
+  .hide{
+      opacity: 0.5;
+  }
+

@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import DevLogo from '../images/cardimg.PNG';
-import Logo from '../images/back.png'
+import backIcon from '../images/back.png'
+import Header from './Header';
 
 const Devloper = (props) => {
 
@@ -8,12 +9,20 @@ const Devloper = (props) => {
      props.history.push("/dashboard");
   };
 
+  useEffect(() => {
+    console.log("props in Devcomp",props)
+    
+  }, [props]);
+
     return (
       <div>
            
-      <div class="row" style={{ backgroundColor: "teal",height:40 }}>
+           <Header 
+        data={props}/>
+             
+      {/* <div class="row" style={{ backgroundColor: "teal",height:40 }}>
         <div class="col-8">
-          <h2 style={{ color: "whitesmoke" }}>React CRUD App</h2>  
+       
          
         </div>
         
@@ -26,10 +35,10 @@ const Devloper = (props) => {
             }}
             onClick={logOut}
           >
-        <img src={Logo} width="30px" height="30px" /> &nbsp;
+        <img src={backIcon} width="30px" height="30px" /> &nbsp;
           </div>
         </div>
-      </div>
+      </div> */}
     
         <div class="ui link cards" style={{display:'flex',justifyContent:'center',marginTop:'40px'}}>
   <div class="card">

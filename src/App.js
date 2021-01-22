@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Logo from "./images/avatar.png";
+import Logo from "../src/logo.svg";
 import { Card, Button, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Background from "./images/colorful.jpg";
@@ -16,6 +16,7 @@ import {
   getPostsAction,
   getPostSingle
 } from "./redux/reducers/reduxActions/actions";
+import Header from "./components/Header";
 
 function App(props) {
   let [posts, setPosts] = useState(props.allPosts);
@@ -44,7 +45,8 @@ function App(props) {
 
   useEffect(() => {
     let mounted = true;
-    console.log("useeffectrun");
+    console.log("Dash useeffectrun");
+  console.log(isClientOrServer())  
 
     // getPosts();
     if (search) {
@@ -167,17 +169,22 @@ function App(props) {
     }
   }
 
+  const isClientOrServer = () => {
+    return (typeof window !== 'undefined' && window.document) ? 'client side' : 'server side';
+  };
+
   return (
     <div
-      class="container"
+      class=""
       style={{
         backgroundColor: "whitesmoke",
         backgroundImage: `url(${Background})`,
         height: showPosts ? "" : "100vh",
       }}
     >
-      <div class="row" style={{ backgroundColor: "teal", height: 40 }}>
+      {/* <div class="row" style={{ backgroundColor: "teal", height: 40 }}>
         <div class="col-8">
+
           <h2 style={{ color: "whitesmoke" }}>{props.title}</h2>
         </div>
 
@@ -193,8 +200,18 @@ function App(props) {
             <img src={Logo} width="30px" height="30px" /> &nbsp; <p>Logout</p>
           </div>
         </div>
-      </div>
-      <div class="row" style={{ marginTop: "20px" }}>
+      </div> */}
+     
+     <Header
+     logOut= {logOut} 
+     showAllPosts={showAllPosts}
+     hideAllPosts={hideAllPosts}
+     showPosts={showPosts}
+     history={props.history}
+     />
+    
+ 
+      {/* <div class="row" style={{ marginTop: "20px" }}>
         <div class="col-8">
           <button
             class="btn btn-success sm"
@@ -211,7 +228,7 @@ function App(props) {
             </button>
           </div>
         )}
-      </div>
+      </div> */}
       {rowData && showPosts && (
         <div>
           <lable>Selected Row Details are :</lable> <br />
@@ -250,19 +267,18 @@ function App(props) {
         </form>
       </div>{" "}
       <br />
-      <input
-        class="form-control"
-        placeholder="search id"
-        value={search}
-        type="number"
-        onChange={searchHandler.bind(this)}
-      />{" "}
+      {
+        showPosts && ( <input
+          class="form-control"
+          placeholder="search id"
+          value={search}
+          type="number"
+          onChange={searchHandler.bind(this)}
+        />)
+      }
+     {" "}
       <hr />
-      <div>
-        <Link to="/dev">
-          <a>Connect to Developer</a>
-        </Link>
-      </div>{" "} <br/>
+  
 
      {
        search && ( <p style={{color:'#fff'}}>Search Content -:{props.singlePost.title}</p>)
@@ -270,7 +286,7 @@ function App(props) {
       <br />
       {/* <div onClick={()=>props.getPostsAction()}><p>GET_POSTS</p></div> <br/> */}
       {!showPosts && (
-        <Card style={{ backgroundColor: "silver" }}>
+        <Card style={{ backgroundColor: "#333" }}>
           <Card.Content>
             <Card.Header>{props.count}</Card.Header>
             <Card.Meta>Counter updating from Reducer</Card.Meta>
@@ -295,12 +311,12 @@ function App(props) {
           {search
             ? posts.map((data, i) => {
                 return (
-                  <Card key={data.id}>
+                  <Card key={data.id} style={{ backgroundColor: "#333" }}>
                     <Card.Content onClick={getRowData.bind(this, data)}>
                       <Image floated="right" size="mini" src={Logo} />
-                      <Card.Header>{data.id}</Card.Header>
-                      <Card.Meta>{JSON.stringify(data.completed)}</Card.Meta>
-                      <Card.Description>{data.title}</Card.Description>
+                      <Card.Header style={{color:"fff"}}>{data.id}</Card.Header>
+                      <Card.Meta style={{color:"fff"}}>{JSON.stringify(data.completed)}</Card.Meta>
+                      <Card.Description style={{color:"fff"}}>{data.title}</Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                       <div class="ui two buttons">
@@ -321,12 +337,12 @@ function App(props) {
               })
             : allData.map((data, i) => {
                 return (
-                  <Card key={data.user}>
+                  <Card key={data.user} style={{ backgroundColor: "#333" }}>
                     <Card.Content onClick={getRowData.bind(this, data)}>
                       <Image floated="right" size="mini" src={Logo} />
-                      <Card.Header>{data.id}</Card.Header>
-                      <Card.Meta>{JSON.stringify(data.completed)}</Card.Meta>
-                      <Card.Description>{data.title}</Card.Description>
+                      <Card.Header style={{color:"#fff"}}>{data.id}</Card.Header>
+                      <Card.Meta style={{color:"#fff"}}>{JSON.stringify(data.completed)}</Card.Meta>
+                      <Card.Description style={{color:"#fff"}}>{data.title}</Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                       <div class="ui two buttons">
