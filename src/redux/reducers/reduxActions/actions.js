@@ -136,7 +136,7 @@ export const saveTokenAction = (token) => {
     };
   };
 
-  export const getPostSingle = (id) => {
+  export const getPostSingle = (id) => { 
     console.log("getPostsAction",id)
     return {
       type: GET_SINGLE_POST,  

@@ -36,24 +36,4 @@ body button:hover {
   background-color: #a3dff1;
   height: 50vh;
 }
-
-.log button {
-  background-color: aqua;
-}
-
-.log button:hover {
-  background-color: #a0d47c;
-}
-
-table {
-  background-color: black;
-}
-
-table th {
-  background-color: silver;
-}
-
-table td {
-  color: tomato;
-}
-/*# sourceMappingURL=App.css.map */
+/*# sourceMappingURL=body.css.map */

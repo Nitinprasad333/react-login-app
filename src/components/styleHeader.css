@@ -1,13 +1,15 @@
 li{
     display: inline;
     float: left;
+
    
 }
 
-a {
+a {        
     display: block;
     padding: 4px;
     background-color: #dddddd;
+
   }
 
   ul {
@@ -17,7 +19,6 @@ a {
   padding: 0;
   overflow: hidden;
   background-color:#333;
-  position: sticky;
   top: 0;
   }
 
@@ -38,6 +39,7 @@ a {
     padding: 10px 10px;
     text-decoration: none;
     font-weight: bold;
+
    
   }
 

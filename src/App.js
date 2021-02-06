@@ -18,6 +18,8 @@ import {
 } from "./redux/reducers/reduxActions/actions";
 import Header from "./components/Header";
 import Postcard from "./components/Postcard";
+import {Session} from './components/Session';
+import TransitionGroup from 'react-transition-group';
 
 function App(props) {
   let [posts, setPosts] = useState(props.allPosts);
@@ -65,36 +67,32 @@ function App(props) {
     console.log("ifblockuse data", b());
     console.log("useeffect App posts", posts);
     console.log("useeffect App  allData", allData);
+    console.log("useeffect App  Session", Session());
+    const isSession = Session();
+    if (!isSession) {
+      let Logout = "Logout";
+      props.LogoutAction();
+      props.getPostsAction(Logout);
+    }
+  
+
     return () => (mounted = false);
   }, [props, search]);
 
-  // const getPosts = () => {
-  //   if (posts.length === 0) {
-  //     return axios
-  //       .get("http://jsonplaceholder.typicode.com/todos")
-  //       .then((rst) => {
-  //         console.log(rst);
-  //         if (rst) {
-  //           setPosts((rst.data));
-  //           setAllData(rst.data)
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // };
 
   const getRowData = (data) => {
     console.log("row Data", data);
-    setRowData(data);
+    // setRowData(data);
+    setRowData((state)=>({
+      data
+    }))
   };
 
   const showAllPosts = () => {
-    console.log("Showpostcall");
+    console.log("Showpostcall",posts,allData);
     let Login = "Login";
     setShow(true);
-    if (posts.length == 0 && allData.length == 0) {
+    if (posts !== null && allData !== null && posts.length == 0 && allData.length == 0) {
       props.getPostsAction(Login);
     }
 
@@ -126,7 +124,7 @@ function App(props) {
     posts.push(Data);
     allData.push(Data);
 
-    setTitle("");
+    setTitle(""); 
     setUser("");
   };
 
@@ -134,6 +132,7 @@ function App(props) {
     let Logout = "Logout";
     props.LogoutAction();
     props.getPostsAction(Logout);
+    sessionStorage.removeItem("userSession");
     props.history.push("/");
   };
 
@@ -265,6 +264,7 @@ function App(props) {
         </form>
       </div>{" "}
       <br />
+     
       {showPosts && (
         <input
           class="form-control"
@@ -275,6 +275,9 @@ function App(props) {
         />
       )}{" "}
       <hr />
+      <div>
+      <a href="https://reactjs.org/">React Documention</a>
+      </div>
       {search && (
         <p style={{ color: "#fff" }}>
           Search Content -:{props.singlePost.title}
@@ -283,10 +286,11 @@ function App(props) {
       <br />
       {/* <div onClick={()=>props.getPostsAction()}><p>GET_POSTS</p></div> <br/> */}
       {!showPosts && (
-        <Card style={{ backgroundColor: "#333" }}>
+         <div style={{display:'flex',justifyContent:'center',paddingLeft:1,}}>
+        <Card >
           <Card.Content>
             <Card.Header>{props.count}</Card.Header>
-            <Card.Meta>Counter updating from Reducer</Card.Meta>
+            <Card.Meta>Counter updating from Redux-Reducer</Card.Meta>
           </Card.Content>
           <Card.Content extra>
             <div class="ui three buttons">
@@ -302,10 +306,11 @@ function App(props) {
             </div>
           </Card.Content>
         </Card>
+        </div>
       )}
-      {showPosts && (
+      {showPosts &&  allData !== null &&  (
         <div>
-          {search
+          {search  
             ? posts.map((data, i) => {
                 return (
                   <Postcard

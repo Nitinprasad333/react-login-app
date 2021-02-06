@@ -15,13 +15,11 @@ import {
     takeLatest,
     call,
     put,
-    delay,
-    
-  } from "redux-saga/effects";
+    delay,} from "redux-saga/effects";
  
   
-  import { getDummyApi } from '../redux/reducers/reduxActions/actions';
-  import { getPostsApi } from '../common/apis';
+import { getDummyApi } from '../redux/reducers/reduxActions/actions';
+import { getPostsApi } from '../common/apis';
 import { getAllPosts,getSinglePost } from '../common/apisMethods';
 import { GET_POST_URL,GET_POSTID_URL } from '../common/apiUrl';
   
@@ -85,7 +83,7 @@ import { GET_POST_URL,GET_POSTID_URL } from '../common/apiUrl';
 
 }
 
-function* logOutCurrUser(action) { 
+function* logOutCurrUser(action){ 
     console.log("logOutCurrUser Saga",action.payload)
     yield put({
       type: LOG_OUT,
@@ -158,8 +156,7 @@ try{
         singleData:response.data
       }
     })
-     
-  
+
  }
 
 }

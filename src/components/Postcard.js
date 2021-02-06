@@ -4,8 +4,8 @@ import Logo from "../../src/logo.svg";
 
 const Postcard = (props) => {
     return (
-        <div style={{display:'flex',justifyContent:'center',marginRight:30}}>
-          <Card.Group>
+        <div style={{display:'flex',justifyContent:'center',paddingLeft:1}}>
+          <Card.Group> 
              <Card key={props.data.id} style={{ backgroundColor: "#333" }}>
                     <Card.Content onClick={props.getRowData.bind(this, props.data)}>
                       <Image floated="right" size="mini" src={Logo} />

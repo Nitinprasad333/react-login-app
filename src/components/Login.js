@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import logo from '../../src/logo.svg';
 import '../../src/App.css'
 import { Link } from "react-router-dom";
+import TransitionGroup from 'react-transition-group';
+
 
 const Login = (props) => {
   let [token, setToken] = useState("");
@@ -20,6 +22,7 @@ const Login = (props) => {
     if (props.appToken !== null) {
       //localStorage.setItem("token", token);
       props.history.push("/dashboard");
+      // localStorage.setItem("LogToken",props.appToken)
     }
     else{
       props.history.push("/");
@@ -63,6 +66,17 @@ const Login = (props) => {
         setUser("");
         setPassword("");
         console.log("tooookekn 2", token);
+        const userInfo = {
+          username: 'nitin',
+          login:Date.now()
+        }
+        sessionStorage.setItem("userSession",JSON.stringify (userInfo))
+
+        for(let i= 0; i < sessionStorage.length; i++) {
+          const key =sessionStorage.key(i);
+          console.log("Session Data Key",`${sessionStorage.getItem(key)}`)
+        }
+
       }    
        else  if (user !== "nitin" ) {
           
@@ -79,12 +93,6 @@ const Login = (props) => {
     }
     
     
-  };
-
-  
-
-  const confirmHandler = () => {
-    alert("select agree for t&c");
   };
 
   return (
@@ -108,9 +116,18 @@ const Login = (props) => {
          {/* <div>
          <img src={logo} className="App-logo" alt="logo" />
       </div> */}
-        
+      {/* <TransitionGroup
+                       
+                        timeout={2500}
+                        classNames="fade"
+                    >
+                      Login
+                    </TransitionGroup> */}
+          
+      
 
         <h1 style={{ textAlign: "center", color: "silver" }}>Login</h1>
+      
         <Form onSubmit={ loginHandler }>
           <Form.Field>
             <label style={{ color: "#fff" }}>User Name</label>
@@ -118,7 +135,7 @@ const Login = (props) => {
               placeholder="User Name"
               onChange={userNameHandler}
               value={user}
-              style={{ borderRadius: "20px" }}
+              style={{ borderRadius: "20px" ,borderColor:'brown'}}
               autoFocus={true}
             />
           </Form.Field>
@@ -128,7 +145,7 @@ const Login = (props) => {
               placeholder="Password"
               onChange={passwordHandler}
               value={password}
-              style={{ borderRadius: "20px" }}
+              style={{ borderRadius: "20px",borderColor:'brown' }}
               maxLength="8"
             />
           </Form.Field>

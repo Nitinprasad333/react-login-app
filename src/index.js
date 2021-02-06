@@ -1,53 +1,56 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import 'semantic-ui-css/semantic.min.css'
-import Login from './components/Login';
-import Routes from './components/Routes';
-import { createStore,applyMiddleware,compose,combineReducers  } from 'redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "semantic-ui-css/semantic.min.css";
+import Login from "./components/Login";
+import Routes from "./components/Routes";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
-import watchIncrement from '../src/saga/saga';
-import {rootReducer } from '../src/redux/reducers/rootReducer';
-import { loadState, saveState } from '../src/common/commonState';
+import watchIncrement from "../src/saga/saga";
+import { rootReducer } from "../src/redux/reducers/rootReducer";
+import { loadState, saveState } from "../src/common/commonState";
 import _ from "lodash";
-import watchersRootSaga from './saga/rootSaga';
-import * as serviceWorker from './serviceWorker';
+import watchersRootSaga from "./saga/rootSaga";
+import * as serviceWorker from "./serviceWorker";
+import ScssTesting from "./components/ScssTesting";
+import Resheader from "./components/Resheader";
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
   const persistedState = loadState();
 
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  
-  
-  
-  const store = createStore(rootReducer,persistedState,
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  const store = createStore(
+    rootReducer,
+    persistedState,
     composeEnhancers(applyMiddleware(sagaMiddleware))
   );
-  
+
   sagaMiddleware.run(watchersRootSaga);
 
-  store.subscribe(_.throttle(() => {
-    saveState(store.getState());
-  }, 1000));
+  store.subscribe(
+    _.throttle(() => {
+      saveState(store.getState());
+    }, 1000)
+  );
 
-return store; 
-}
+  return store;
+};
 
 const store = configureStore();
 
-
-
-
-
 ReactDOM.render(
   <Provider store={store}>
-    <Routes/>
+    {/* <Routes /> */}
+     {/* <ScssTesting/> */}
+     <Resheader/>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

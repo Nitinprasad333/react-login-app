@@ -2,15 +2,20 @@ import React,{useEffect} from 'react';
 import DevLogo from '../images/cardimg.PNG';
 import backIcon from '../images/back.png'
 import Header from './Header';
+import {Session} from './Session';
+import {getPostsAction,LogoutAction} from '../redux/reducers/reduxActions/actions';
+import { connect } from 'react-redux';
 
 const Devloper = (props) => {
 
-  const logOut = () => {
-     props.history.push("/dashboard");
-  };
-
   useEffect(() => {
     console.log("props in Devcomp",props)
+    const isSession = Session();
+    if (!isSession) {
+      let Logout = "Logout";
+      props.LogoutAction();
+      props.getPostsAction(Logout);
+    }
     
   }, [props]);
 
@@ -70,4 +75,10 @@ const Devloper = (props) => {
     );
 }
 
-export default Devloper;
+const mapStateToProps = state =>{
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, { LogoutAction,getPostsAction })(Devloper);

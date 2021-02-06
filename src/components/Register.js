@@ -19,6 +19,7 @@ const Register = (props) => {
      setPassword(inputs.password)
      setEmail(inputs.email)
      setMobile(inputs.mobile)
+     
     },[inputs])
 
  const inputHandler=(fields)=>({target}) => {
@@ -91,7 +92,7 @@ const Register = (props) => {
               placeholder="*User Name"
               onChange={inputHandler('user')}
               value={user}
-              style={{ borderRadius: "20px" }}
+              style={{ borderRadius: "20px",borderColor:'brown' }}
               autoFocus={true}
               type="text"
             />
@@ -103,7 +104,7 @@ const Register = (props) => {
               placeholder="*Password"
               onChange={inputHandler('password')}
               value={password}
-              style={{ borderRadius: "20px" }}
+              style={{ borderRadius: "20px",borderColor:'brown' }}
               type="password"
               maxLength= "8"
             />
@@ -126,12 +127,12 @@ const Register = (props) => {
               placeholder="*Mobile"
               onChange={inputHandler('mobile')}
               value={mobile}
-              style={{ borderRadius: "20px" }}
+              style={{ borderRadius: "20px",borderColor:'brown' }}
               type="tel"
               maxLength= "10"
             />
           </Form.Field>
-      
+                                     
           <Button
             type="submit"
             class="ui primary button"

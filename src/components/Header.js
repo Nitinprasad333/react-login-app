@@ -24,7 +24,7 @@ const Header = (props) => {
 
   return (
     <div>
-      <div>
+      <div style={{position:'-webkit-sticky'}}>
         <ul>
           {!props.showPosts && (
             <li>

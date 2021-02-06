@@ -1,0 +1,28 @@
+// $headColor:blue;
+// $buttonBack:rgb(160, 212, 124);
+// $hoverCol:aqua;
+
+// @mixin flexCenter($background) {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     font-size: 15px;
+//     background-color: $background
+// }
+
+// body{
+//     @include flexCenter(bisque);
+//     color: $headColor;
+//     button{
+//         background-color: $buttonBack;
+//        &:hover{
+//            background-color: $hoverCol;
+//        }
+//     }
+// }
+
+// .content p{
+//     color: rgb(167, 156, 156);
+//     @include flexCenter( rgb(163, 223, 241));
+//     height: 50vh;
+// }

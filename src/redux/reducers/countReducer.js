@@ -31,7 +31,8 @@ const initialState = {
   isLoading:false,
   isError:false,
   allPosts:null,
-  singlePost:null
+  singlePost:null,
+ 
 };
 
 const CounterReducer = (state = initialState, action) => {
@@ -67,7 +68,9 @@ const CounterReducer = (state = initialState, action) => {
             case SAVE_TOKEN:
                 console.log("SAVE_TOKEN Reducer",action.payload)
               return { ...state,
-                appToken:action.payload.tokenData};
+                appToken:action.payload.tokenData,
+             
+              };
 
                 case LOG_OUT:
                 console.log("LOG_OUT Reducer",action.payload)
