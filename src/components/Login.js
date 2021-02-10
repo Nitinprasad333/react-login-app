@@ -38,9 +38,10 @@ const Login = (props) => {
   };
 
   const passwordHandler = (e) => {
+    
     setPassword(e.target.value);
-  };
 
+  }
   // const agreeHandler=(e,{data})=>{
   // console.log("checkobox",e,data)
   // }
@@ -52,6 +53,16 @@ const Login = (props) => {
 
   const loginHandler =  () => {
     console.log("logincall")
+    
+    let  regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (regex.exec(password) === null) {
+      alert('invalid password!')
+    }
+    else {
+      console.log("valid");
+    }
+  
+
     if (term) {
       if (user === "" && password === "") {
         alert("Enter Inputs to Login");

@@ -46,9 +46,9 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <Routes /> */}
+    <Routes />
      {/* <ScssTesting/> */}
-     <Resheader/>
+  
   </Provider>,
   document.getElementById("root")
 );

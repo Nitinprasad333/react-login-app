@@ -22,7 +22,7 @@ body button:hover {
 }
 
 .content p {
-  color: black;
+  color: #a79c9c;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,7 +46,7 @@ body button:hover {
 }
 
 table {
-  background-color: black;
+  background-color: #8f8989;
 }
 
 table th {
