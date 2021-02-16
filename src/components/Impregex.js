@@ -24,6 +24,8 @@ if (regExp.test(value)) {
   });
 }
 
+
+
 //for 1 small,1 capital,1number,1special character & min 8 digit
 
  

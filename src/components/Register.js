@@ -23,6 +23,7 @@ const Register = (props) => {
     },[inputs])
 
  const inputHandler=(fields)=>({target}) => {
+   console.log("from inp handler",fields)
      setInputs((state)=>({
          ...state,
          [fields]: target.value

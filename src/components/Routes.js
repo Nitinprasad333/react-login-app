@@ -45,6 +45,7 @@ const Routes =  (props) => {
           
            </Switch>
          :   <Redirect to ="/"/>
+         
 
        }
    </React.StrictMode>
@@ -68,5 +69,5 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps, 
-  {LogoutAction,getPostsAction  })(Routes);
+  {LogoutAction,getPostsAction})(Routes);
 
