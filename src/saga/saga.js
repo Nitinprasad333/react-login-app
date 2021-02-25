@@ -146,7 +146,7 @@ const Data = {
 
 }
 try{
- const response =  yield call(getSinglePost,`${GET_POSTID_URL}${payload.id}`,Data)
+ const  response =  yield call(getSinglePost,`${GET_POSTID_URL}${payload.id}`,Data)
  if (response) {
    console.log("response from getSinglePostSaga api",response.data)
 
