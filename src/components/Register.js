@@ -62,95 +62,68 @@ const Register = (props) => {
  }
 
     return (
-      
-            <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "#333",
-        height: "100vh",
-        // backgroundImage: `url(${Background})`,
-      }}
-    >
-      <div
-        style={{
-          alignContent: "center",
-          alignItems: "center",
-          marginTop: "100px",
-        }}
-      >
-        
-         {/* <div>
-         <img src={logo} className="App-logo" alt="logo" />
-      </div> */}
-        
-
-        <h1 style={{ textAlign: "center", color: "silver" }}>Register</h1>
-        <Form onSubmit={newRegister}>
-          <Form.Field>
-            <label style={{ color: "#fff" }}>User Name</label>
-            <input
-              placeholder="*User Name"
-              onChange={inputHandler('user')}
-              value={user}
-              style={{ borderRadius: "20px",borderColor:'brown' }}
-              autoFocus={true}
-              type="text"
-            />
-          </Form.Field>
-
-          <Form.Field>
-            <label style={{ color: "#fff" }}>Password</label>
-            <input
-              placeholder="*Password"
-              onChange={inputHandler('password')}
-              value={password}
-              style={{ borderRadius: "20px",borderColor:'brown' }}
-              type="password"
-              maxLength= "8"
-            />
-          </Form.Field>
-
-          {/* <Form.Field>
-            <label style={{ color: "#fff" }}>Email</label>
-            <input
-              placeholder="Email"
-              onChange={inputHandler('email')}
-              value={email}
-              style={{ borderRadius: "20px" }}
-              type="mail"
-            />
-          </Form.Field> */}
-
-          <Form.Field>
-            <label style={{ color: "#fff" }}>Mobile</label>
-            <input
-              placeholder="*Mobile"
-              onChange={inputHandler('mobile')}
-              value={mobile}
-              style={{ borderRadius: "20px",borderColor:'brown' }}
-              type="tel"
-              maxLength= "10"
-            />
-          </Form.Field>
-                                     
-          <Button
-            type="submit"
-            class="ui primary button"
-            style={{ marginLeft: "30%" }}
-          >
-            Signup
-          </Button>
-          <Form.Field style={{textAlign:'center'}}>
-            <Link to= "/">
-            <label>Already have Account,Signin ?</label>
-            </Link>
-        
-          </Form.Field>
-        </Form>
-      </div>
+  
+      <div>
+      <div class="ui attached message">
+<div class="header">
+  Welcome to our site!
+</div>
+<p>Fill out the form below to sign-up for a new account</p>
+</div>
+<form class="ui form attached fluid segment" onSubmit={newRegister}>
+<div class="two fields">
+  <div class="field">
+    <label>User Name</label>
+    <input 
+     type="text"
+     onChange={inputHandler('user')}
+     value={user}
+     autoFocus={true}
+/>
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input 
+     type="text"
+     onChange={inputHandler('password')}
+     value={password}
+     maxLength= "8"
+     type='password'
+/>
+  </div>
+</div>
+<div class="field">
+  <label>Email</label>
+  <input 
+   type="text"
+   onChange={inputHandler('email')}
+   value={email}
+   type='email'
+/>
+</div>
+<div class="field">
+  <label>Mobile</label>
+  <input type="tel"  
+   onChange={inputHandler('mobile')}
+   value={mobile}
+   maxLength= "10"
+/>
+</div>
+<div class="inline field">
+  <div class="ui checkbox">
+    <input type="checkbox" id="terms"/>
+    <label for="terms">I agree to the terms and conditions</label>
+  </div>
+</div>
+<div class="ui blue submit button">Submit</div>
+</form>
+<Link to= "/">
+<div class="ui bottom attached warning message">
+<i class="icon help"></i>
+Already signed up? <a href="#">Login here</a> instead.
+</div>
+</Link>
     </div>
-       
     );
 }
 

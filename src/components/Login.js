@@ -145,7 +145,7 @@ const Login = (props) => {
               placeholder="User Name"
               onChange={userNameHandler}
               value={user}
-              style={{ borderRadius: "20px" ,borderColor:'brown'}}
+              style={{ borderRadius: "16px"}}
               autoFocus={true}
             />
           </Form.Field>
@@ -155,7 +155,7 @@ const Login = (props) => {
               placeholder="Password"
               onChange={passwordHandler}
               value={password}
-              style={{ borderRadius: "20px",borderColor:'brown' }}
+              style={{ borderRadius: "16px" }}
               maxLength="8"
             />
           </Form.Field>
