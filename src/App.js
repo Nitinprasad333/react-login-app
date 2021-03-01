@@ -178,7 +178,7 @@ function App(props) {
       class=""
       style={{
         backgroundColor: "whitesmoke",
-        backgroundImage: `url(${Background})`,
+       // backgroundImage: `url(${Background})`,
         height: showPosts ? "" : "100vh",
       }}
     >

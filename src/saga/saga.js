@@ -95,9 +95,10 @@ function* logOutCurrUser(action) {
       payload: {},
     });
   } catch (error) {
-    console.log("logout error", error);
+    console.log("logout error", error); 
   }
 }
+
 
 function* getPosts(action) {
   const payload = action.payload;

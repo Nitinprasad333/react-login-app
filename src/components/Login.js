@@ -67,9 +67,9 @@ const Login = (props) => {
       if (user === "" && password === "") {
         alert("Enter Inputs to Login");
       }
-     else if (user === "nitin" && password === '123') {
+     else if (user === "nitin" && password === 'Nit@1234') {
         const tokDat = "_" + Math.random().toString(36).substr(2, 9);
-        console.log("tooookekn 1", tokDat);
+        console.log("tooookekn 1", tokDat);         
         setToken(tokDat);
         props.saveTokenAction(tokDat);
   
@@ -111,7 +111,6 @@ const Login = (props) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        backgroundColor: "#333",
         height: "100vh",
         // backgroundImage: `url(${Background})`,
       }}

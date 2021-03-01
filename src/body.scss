@@ -1,4 +1,4 @@
-$headColor:blue;
+$headColor:rgb(49, 47, 47);
 $buttonBack:rgb(160, 212, 124);
 $hoverCol:rgb(65, 109, 109);
 
@@ -11,7 +11,7 @@ $hoverCol:rgb(65, 109, 109);
 }
 
 body{
-    @include flexCenter(bisque);
+    @include flexCenter(rgb(49, 47, 47));
     color: $headColor;
     button{
         background-color: $buttonBack;
