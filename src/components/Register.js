@@ -70,7 +70,7 @@ const Register = (props) => {
 </div>
 <p>Fill out the form below to sign-up for a new account</p>
 </div>
-<form class="ui form attached fluid segment" onSubmit={newRegister}>
+<form class="ui form attached fluid segment" onSubmit={newRegister} style={{backgroundColor:'rgb(49, 47, 47)'}}>
 <div class="two fields">
   <div class="field">
     <label>User Name</label>
@@ -113,16 +113,18 @@ const Register = (props) => {
   <div class="ui checkbox">
     <input type="checkbox" id="terms"/>
     <label for="terms">I agree to the terms and conditions</label>
+    
   </div>
 </div>
 <div class="ui blue submit button">Submit</div>
+<div class="ui ">
+  
+<Link to= "/"><label for="terms">Already signed up? <b>Login here</b>  instead.</label></Link>    
+    
+  </div>
 </form>
-<Link to= "/">
-<div class="ui bottom attached warning message">
-<i class="icon help"></i>
-Already signed up? <a href="#">Login here</a> instead.
-</div>
-</Link>
+
+
     </div>
     );
 }
