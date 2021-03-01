@@ -91,7 +91,7 @@ setTerm(data)
   <div class="field">
     <label style={{color:'#ffff'}}>Password</label>
     <input 
-     type="text"
+     type="password"
      onChange={inputHandler('password')}
      value={password}
      maxLength= "8"
@@ -118,13 +118,11 @@ setTerm(data)
 </div>
 <div class="inline field">
   <div class="ui checkbox">
-
     <input type="checkbox" id="terms" onChange={conditionHandler}/>
-    <label for="terms" style={{ color:term === true ? 'green' : 'black'}}>I agree to the terms and conditions</label>
-    
+    <label for="terms" style={{ color:term === true ? 'green' : 'black'}}>I agree to the terms and conditions</label>    
   </div>
 </div>
-<div class="ui blue submit button">Submit</div>
+<div class="ui teal submit button">Submit</div>
 <div class="ui ">
   
 <Link to= "/"><label for="terms">Already signed up? <b>Login here</b>  instead.</label></Link>    

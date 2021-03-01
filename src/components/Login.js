@@ -165,13 +165,8 @@ const Login = (props) => {
               onClick={agreeHandler}
             />
           </Form.Field>
-          <Button
-            type="submit"
-            class="ui primary button"
-            style={{ marginLeft: "30%" }}
-          >
-            Signin
-          </Button>
+          <div class="ui teal  button" 
+          >Submit</div>
           <Form.Field style={{textAlign:'center'}}>
             <Link to= "/signup">
             <label>Don't have Account,Signup ?</label>

@@ -11,7 +11,7 @@ $hoverCol:rgb(65, 109, 109);
 }
 
 body{
-    @include flexCenter(rgb(49, 47, 47));
+    @include flexCenter(rgb(47, 47, 49));
     color: $headColor;
     button{
         background-color: $buttonBack;
