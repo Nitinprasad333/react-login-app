@@ -10,6 +10,7 @@ const Register = (props) => {
     const [password,setPassword] = useState('');
     const [email,setEmail] = useState('');
     const [mobile,setMobile] = useState('');
+    const [term,setTerm] = useState('');
     
 
 
@@ -61,6 +62,12 @@ const Register = (props) => {
   
  }
 
+ const conditionHandler=(e)=>{
+console.log("chkbox is",e.target.checked)
+const data =e.target.checked
+setTerm(data)
+ }
+
     return (
   
       <div>
@@ -73,7 +80,7 @@ const Register = (props) => {
 <form class="ui form attached fluid segment" onSubmit={newRegister} style={{backgroundColor:'rgb(49, 47, 47)'}}>
 <div class="two fields">
   <div class="field">
-    <label>User Name</label>
+    <label style={{color:'#ffff'}}>User Name</label>
     <input 
      type="text"
      onChange={inputHandler('user')}
@@ -82,7 +89,7 @@ const Register = (props) => {
 />
   </div>
   <div class="field">
-    <label>Password</label>
+    <label style={{color:'#ffff'}}>Password</label>
     <input 
      type="text"
      onChange={inputHandler('password')}
@@ -93,7 +100,7 @@ const Register = (props) => {
   </div>
 </div>
 <div class="field">
-  <label>Email</label>
+  <label style={{color:'#ffff'}}>Email</label>
   <input 
    type="text"
    onChange={inputHandler('email')}
@@ -102,7 +109,7 @@ const Register = (props) => {
 />
 </div>
 <div class="field">
-  <label>Mobile</label>
+  <label style={{color:'#ffff'}}>Mobile</label>
   <input type="tel"  
    onChange={inputHandler('mobile')}
    value={mobile}
@@ -111,8 +118,9 @@ const Register = (props) => {
 </div>
 <div class="inline field">
   <div class="ui checkbox">
-    <input type="checkbox" id="terms"/>
-    <label for="terms">I agree to the terms and conditions</label>
+
+    <input type="checkbox" id="terms" onChange={conditionHandler}/>
+    <label for="terms" style={{ color:term === true ? 'green' : 'black'}}>I agree to the terms and conditions</label>
     
   </div>
 </div>
