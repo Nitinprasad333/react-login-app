@@ -119,23 +119,14 @@ const Login = (props) => {
         style={{
           alignContent: "center",
           alignItems: "center",
-          marginTop: "150px",
+          marginTop: "100px",
         }}
       >
         
-         {/* <div>
-         <img src={logo} className="App-logo" alt="logo" />
-      </div> */}
-      {/* <TransitionGroup
-                       
-                        timeout={2500}
-                        classNames="fade"
-                    >
-                      Login
-                    </TransitionGroup> */}
-          
-      
-
+         <div style={{display:'flex',justifyContent:'center'}}>
+         <img src={logo} width='100px' height='100px' className="App-logo" alt="logo" />
+      </div>
+ 
         <h1 style={{ textAlign: "center", color: "silver" }}>Login</h1>
       
         <Form onSubmit={ loginHandler }>
@@ -145,7 +136,7 @@ const Login = (props) => {
               placeholder="User Name"
               onChange={userNameHandler}
               value={user}
-              style={{ borderRadius: "16px"}}
+              style={{ borderRadius: "16px",borderColor:'teal'}}
               autoFocus={true}
             />
           </Form.Field>
@@ -155,7 +146,7 @@ const Login = (props) => {
               placeholder="Password"
               onChange={passwordHandler}
               value={password}
-              style={{ borderRadius: "16px" }}
+              style={{ borderRadius: "16px",borderColor:'teal' }}
               maxLength="8"
             />
           </Form.Field>
@@ -164,8 +155,9 @@ const Login = (props) => {
               label="I agree to the Terms and Conditions"
               onClick={agreeHandler}
             />
+            
           </Form.Field>
-          <div class="ui teal  button" 
+          <div class="ui teal  button" onClick={loginHandler}
           >Submit</div>
           <Form.Field style={{textAlign:'center'}}>
             <Link to= "/signup">

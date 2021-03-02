@@ -176,11 +176,11 @@ function App(props) {
   return (
     <div
       class=""
-      style={{
-        backgroundColor: "whitesmoke",
-       // backgroundImage: `url(${Background})`,
-        height: showPosts ? "" : "100vh",
-      }}
+      // style={{
+      //   backgroundColor: "whitesmoke",
+      //  // backgroundImage: `url(${Background})`,
+      //   height: showPosts ? "" : "100vh",
+      // }}
     >
       {/* <div class="row" style={{ backgroundColor: "teal", height: 40 }}>
         <div class="col-8">
