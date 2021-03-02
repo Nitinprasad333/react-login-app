@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/react-login-app/static/css/main.dcb42761.chunk.css",
+    "main.js": "/react-login-app/static/js/main.4bcd3fe5.chunk.js",
+    "main.js.map": "/react-login-app/static/js/main.4bcd3fe5.chunk.js.map",
+    "runtime-main.js": "/react-login-app/static/js/runtime-main.6aa0f976.js",
+    "runtime-main.js.map": "/react-login-app/static/js/runtime-main.6aa0f976.js.map",
+    "static/css/2.2343066e.chunk.css": "/react-login-app/static/css/2.2343066e.chunk.css",
+    "static/js/2.a88dfbcb.chunk.js": "/react-login-app/static/js/2.a88dfbcb.chunk.js",
+    "static/js/2.a88dfbcb.chunk.js.map": "/react-login-app/static/js/2.a88dfbcb.chunk.js.map",
+    "static/js/3.840b76c5.chunk.js": "/react-login-app/static/js/3.840b76c5.chunk.js",
+    "static/js/3.840b76c5.chunk.js.map": "/react-login-app/static/js/3.840b76c5.chunk.js.map",
+    "index.html": "/react-login-app/index.html",
+    "static/css/2.2343066e.chunk.css.map": "/react-login-app/static/css/2.2343066e.chunk.css.map",
+    "static/css/main.dcb42761.chunk.css.map": "/react-login-app/static/css/main.dcb42761.chunk.css.map",
+    "static/js/2.a88dfbcb.chunk.js.LICENSE.txt": "/react-login-app/static/js/2.a88dfbcb.chunk.js.LICENSE.txt",
+    "static/media/avatar.10691648.png": "/react-login-app/static/media/avatar.10691648.png",
+    "static/media/semantic.min.css": "/react-login-app/static/media/outline-icons.ddae9b1b.woff",
+    "static/media/cardimg.13a8af5e.PNG": "/react-login-app/static/media/cardimg.13a8af5e.PNG",
+    "static/media/colorful.jpg": "/react-login-app/static/media/colorful.bb11fe65.jpg",
+    "static/media/logo.svg": "/react-login-app/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6aa0f976.js",
+    "static/css/2.2343066e.chunk.css",
+    "static/js/2.a88dfbcb.chunk.js",
+    "static/css/main.dcb42761.chunk.css",
+    "static/js/main.4bcd3fe5.chunk.js"
+  ]
+}
