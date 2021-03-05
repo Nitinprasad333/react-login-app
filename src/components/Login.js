@@ -7,6 +7,7 @@ import logo from '../../src/logo.svg';
 import '../../src/App.css'
 import { Link } from "react-router-dom";
 import TransitionGroup from 'react-transition-group';
+import userIcon from '../images/avatar.png'
 
 
 const Login = (props) => {
@@ -79,7 +80,7 @@ const Login = (props) => {
         console.log("tooookekn 2", token);
         const userInfo = {
           username: 'nitin',
-          login:Date.now()
+          token:tokDat
         }
         sessionStorage.setItem("userSession",JSON.stringify (userInfo))
 
@@ -124,40 +125,48 @@ const Login = (props) => {
       >
         
          <div style={{display:'flex',justifyContent:'center'}}>
-         <img src={logo} width='100px' height='100px' className="App-logo" alt="logo" />
+        
       </div>
  
-        <h1 style={{ textAlign: "center", color: "silver" }}>Login</h1>
+        <h1 style={{ textAlign: "center", color: 'silver',fontSize:32, }}>
+Login <i class="react icon"></i></h1>
       
         <Form onSubmit={ loginHandler }>
           <Form.Field>
-            <label style={{ color: "#fff" }}>User Name</label>
+         
+            <label style={{ color: "#fff" }}>
+            <i class="user circle icon"></i>User Name</label>
             <input
               placeholder="User Name"
               onChange={userNameHandler}
               value={user}
-              style={{ borderRadius: "16px",borderColor:'teal'}}
+               style={{ borderRadius: "12px",borderColor:'teal'}}
               autoFocus={true}
+              //style={{outlineStyle:'none',borderColor:'none',border:'none'}}
+
             />
           </Form.Field>
           <Form.Field>
-            <label style={{ color: "#fff" }}>Password</label>
+            <label style={{ color: "#fff" }}>
+            <i class="lock icon"></i>Password</label>
             <input
               placeholder="Password"
               onChange={passwordHandler}
               value={password}
-              style={{ borderRadius: "16px",borderColor:'teal' }}
+              style={{ borderRadius: "12px",borderColor:'teal' }}
               maxLength="8"
+              // style={{outlineStyle:'none',borderColor:'none',border:'none',color:'navy'}}
             />
           </Form.Field>
           <Form.Field>
             <Checkbox
               label="I agree to the Terms and Conditions"
               onClick={agreeHandler}
+              
             />
             
           </Form.Field>
-          <div class="ui teal  button" onClick={loginHandler}
+          <div class="ui teal  button" onClick={loginHandler} style={{marginLeft:'25%'}}
           >Submit</div>
           <Form.Field style={{textAlign:'center'}}>
             <Link to= "/signup">
@@ -167,6 +176,7 @@ const Login = (props) => {
           </Form.Field>
         </Form>
       </div>
+
     </div>
   );
 };

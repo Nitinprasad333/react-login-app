@@ -285,6 +285,7 @@ function App(props) {
       )}
       <br />
       {/* <div onClick={()=>props.getPostsAction()}><p>GET_POSTS</p></div> <br/> */}
+  
       {!showPosts && (
          <div style={{display:'flex',justifyContent:'center',paddingLeft:1,}}>
         <Card >
