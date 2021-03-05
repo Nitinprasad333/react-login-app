@@ -17,6 +17,7 @@ import watchersRootSaga from "./saga/rootSaga";
 import * as serviceWorker from "./serviceWorker";
 import ScssTesting from "./components/ScssTesting";
 import Resheader from "./components/Resheader";
+import Basicjavascript from "./Basicjavascript";
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
@@ -47,8 +48,7 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <Routes />
-     {/* <ScssTesting/> */}
-  
+
   </Provider>,
   document.getElementById("root")
 );

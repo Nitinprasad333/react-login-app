@@ -127,11 +127,11 @@ const Login = (props) => {
          <div style={{display:'flex',justifyContent:'center'}}>
         
       </div>
- 
+     
         <h1 style={{ textAlign: "center", color: 'silver',fontSize:32, }}>
         <i class="react icon" style={{color:'teal'}}></i>Login </h1>
       
-        <Form onSubmit={ loginHandler }>
+        <Form onSubmit={ loginHandler } class="ui form attached fluid segment">
           <Form.Field>
          
             <label style={{ color: "#fff" }}>
@@ -153,7 +153,7 @@ const Login = (props) => {
               placeholder="Password"
               onChange={passwordHandler}
               value={password}
-              style={{ borderRadius: "12px",borderColor:'teal' }}
+              style={{ borderRadius: "12px",borderColor:'teal',backgroundColor:'none' }}
               maxLength="8"
               // style={{outlineStyle:'none',borderColor:'none',border:'none',color:'navy'}}
             />
@@ -175,6 +175,7 @@ const Login = (props) => {
         
           </Form.Field>
         </Form>
+        
       </div>
 
     </div>
