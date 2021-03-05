@@ -129,7 +129,7 @@ const Login = (props) => {
       </div>
  
         <h1 style={{ textAlign: "center", color: 'silver',fontSize:32, }}>
-Login <i class="react icon"></i></h1>
+        <i class="react icon" style={{color:'teal'}}></i>Login </h1>
       
         <Form onSubmit={ loginHandler }>
           <Form.Field>
