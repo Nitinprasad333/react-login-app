@@ -135,7 +135,7 @@ const Login = (props) => {
           <Form.Field>
          
             <label style={{ color: "#fff" }}>
-            <i class="user circle icon"></i>User Name</label>
+            <i class="user circle icon" style={{color:'teal'}}></i>User Name</label>
             <input
               placeholder="User Name"
               onChange={userNameHandler}
@@ -148,7 +148,7 @@ const Login = (props) => {
           </Form.Field>
           <Form.Field>
             <label style={{ color: "#fff" }}>
-            <i class="lock icon"></i>Password</label>
+            <i class="lock icon" style={{color:'teal'}}></i>Password</label>
             <input
               placeholder="Password"
               onChange={passwordHandler}
