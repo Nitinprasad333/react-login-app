@@ -82,7 +82,7 @@ function* saveUserToken(action) {
         tokenData: payload.token,
       },
     });
-  } catch (error) {
+  } catch (error) { 
     console.log("Svae Token Error", error);
   }
 }
@@ -120,6 +120,7 @@ function* getPosts(action) {
           },
         });
       } else {
+        
         yield put({
           type: GET_POSTS_SUCCESS,
           payload: {
