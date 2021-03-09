@@ -23,19 +23,19 @@ a {
 
 
   li h6:hover {
-    background-color:  #4CAF50;
+    background-color: teal;
    
   }
 
   .active {
-    background-color: #141414;
+background-color: teal;
   }
 
   li h6 {
     display: block;
     color: white;
     text-align: center;
-    padding: 10px 10px;
+    padding: 10px 120px;
     text-decoration: none;
     font-weight: bold;
 
