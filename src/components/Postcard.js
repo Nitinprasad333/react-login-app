@@ -4,9 +4,9 @@ import Logo from "../../src/logo.svg";
 
 const Postcard = (props) => {
     return (
-        <div style={{display:'flex',justifyContent:'center',paddingLeft:1}}>
+        <div style={{display:'flex', justifyContent:'center',paddingLeft:1 }}>
           <Card.Group> 
-             <Card key={props.data.id} style={{ backgroundColor: "#333" }}>
+             <Card key={props.data.id} style={{ backgroundColor: "#333",paddingTop:3}}>
                     <Card.Content onClick={props.getRowData.bind(this, props.data)}>
                       <Image floated="right" size="mini" src={Logo} />
                       <Card.Header style={{color:"#fff"}}>{props.data.id}</Card.Header>

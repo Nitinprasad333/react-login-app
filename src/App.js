@@ -92,6 +92,7 @@ function App(props) {
     console.log("Showpostcall",posts,allData);
     let Login = "Login";
     setShow(true);
+    localStorage.setItem('Showpost',showPosts)
     if (posts !== null && allData !== null && posts.length == 0 && allData.length == 0) {
       props.getPostsAction(Login);
     }
@@ -101,6 +102,7 @@ function App(props) {
 
   const hideAllPosts = () => {
     setShow(false);
+    localStorage.setItem('Showpost',showPosts)
   };
 
   const addTitle = (e) => {
@@ -176,11 +178,10 @@ function App(props) {
   return (
     <div
       class=""
-      // style={{
-      //   backgroundColor: "whitesmoke",
-      //  // backgroundImage: `url(${Background})`,
-      //   height: showPosts ? "" : "100vh",
-      // }}
+      style={{
+       
+        height: showPosts ? "100vh" : "100vh",
+      }}
     >
       {/* <div class="row" style={{ backgroundColor: "teal", height: 40 }}>
         <div class="col-8">
@@ -276,7 +277,7 @@ function App(props) {
       )}{" "}
       <hr />
       <div>
-      <a href="https://reactjs.org/">React Documention</a>
+      <a href="https://reactjs.org/">click to check react documention</a>
       </div>
       {search && (
         <p style={{ color: "#fff" }}>
@@ -285,7 +286,8 @@ function App(props) {
       )}
       <br />
       {/* <div onClick={()=>props.getPostsAction()}><p>GET_POSTS</p></div> <br/> */}
-  
+
+      <div style={{ display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
       {!showPosts && (
          <div style={{display:'flex',justifyContent:'center',paddingLeft:1,}}>
         <Card >
@@ -309,29 +311,43 @@ function App(props) {
         </Card>
         </div>
       )}
-      {showPosts &&  allData !== null &&  (
+
+{showPosts &&  allData !== null &&  (
         <div>
           {search  
             ? posts.map((data, i) => {
                 return (
-                  <Postcard
+                  <div style= {{
+              
+                  }}>
+                     <Postcard
                     data={data}
                     getRowData={getRowData}
                     removePost={removePost}
                   />
+                     </div>
+                 
                 );
               })
             : allData.map((data, i) => {
                 return (
+                  <div style= {{
+                    
+                  }}>
                   <Postcard
                     data={data}
                     getRowData={getRowData}
                     removePost={removePost}
                   />
+                  </div>
                 );
               })}
         </div>
       )}
+      </div>
+  
+      
+      
     </div>
   );
 }

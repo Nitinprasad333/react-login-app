@@ -18,7 +18,6 @@ import * as serviceWorker from "./serviceWorker";
 import ScssTesting from "./components/ScssTesting";
 import Resheader from "./components/Resheader";
 
-
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
   const persistedState = loadState();
@@ -48,7 +47,6 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <Routes />
-
   </Provider>,
   document.getElementById("root")
 );
